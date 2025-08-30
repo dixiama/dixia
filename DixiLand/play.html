@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" type="image/x-icon" href="logo (3).png">
+  <title>DixiLand</title>
+  <link rel="stylesheet" href="play.css" />
+</head>
+<body>
+  <!-- Barra de navegación -->
+  <div class="navbar">
+    <img src="logo (3).png" alt="Logo" class="logo" />
+    <div class="nav-buttons">
+      <button class="nav-btn">Mapa</button>
+      <button class="nav-btn">Niveles</button>
+      <button class="nav-btn">Perfil</button>
+    </div>
+  </div>
+
+  
+<!-- Modal de imagen para el botón Mapa -->
+<div id="mapaModal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.5); z-index:1000; justify-content:center; align-items:center;">
+  <div class="modal-content" style="position:relative; width: 600px; height: 400px; background:white; border-radius:20px; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 4px 32px rgba(0,0,0,0.2);">
+   <button id="cerrarMapa" style="position:absolute; top:8px; right:8px; font-size:1.7rem; background:none; border:none; cursor:pointer; z-index:10;">✖</button>
+   <div style="flex:1; width:90%; display:flex; justify-content:center; align-items:center;">
+      <div style="overflow-y:auto; height:300px; width:100%; border-radius:12px; border:1px solid #ccc; box-shadow:0 2px 8px rgba(0,0,0,0.08); background:#f9f9f9;">
+        <img id="imagenMovible" src="back.png" alt="Mapa Movible" style="display:block; margin:auto; max-width:100%; height:800px; object-fit:cover;" />
+      </div>
+    </div>
+    <div style="margin-top:20px; color:#555; font-size:1rem;">Desplázate para ver el mapa completo</div>
+  </div>
+</div>
+
+<!-- ...existing code... -->
+
+<div id="nivelesModal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.5); z-index:1000; justify-content:center; align-items:center;">
+  <div class="modal-content" style="position:relative; width: 600px; height: 400px; background:white; border-radius:20px; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 4px 32px rgba(0,0,0,0.2);">
+    <button id="cerrarNiveles" style="position:absolute; top:8px; right:8px; font-size:1.7rem; background:none; border:none; cursor:pointer; z-index:10;">✖</button>
+    <h2 style="margin-bottom:18px;">Niveles</h2>
+    <div style="overflow-y:auto; height:300px; width:90%; border-radius:12px; border:1px solid #ccc; box-shadow:0 2px 8px rgba(0,0,0,0.08); background:#f9f9f9; padding:12px 0;">
+      <table style="width:100%; border-collapse:separate; border-spacing:0 12px;">
+        <tbody>
+          <tr>
+            <td><img src="nivel1.png" style="width:40px; height:40px; border-radius:50%; object-fit:cover; border:2px solid #007bff;" /></td>
+            <td>Principiante</td>
+          </tr>
+          <tr>
+            <td><img src="nivel2.png" style="width:40px; height:40px; border-radius:50%; object-fit:cover; border:2px solid #28a745;" /></td>
+            <td>Intermedio</td>
+          </tr>
+          <tr>
+            <td><img src="nivel3.png" style="width:40px; height:40px; border-radius:50%; object-fit:cover; border:2px solid #ffc107;" /></td>
+            <td>Avanzado</td>
+          </tr>
+          <tr>
+            <td><img src="nivel4.png" style="width:40px; height:40px; border-radius:50%; object-fit:cover; border:2px solid #dc3545;" /></td>
+            <td>Experto</td>
+          </tr>
+          <tr>
+            <td><img src="nivel5.png" style="width:40px; height:40px; border-radius:50%; object-fit:cover; border:2px solid #6610f2;" /></td>
+            <td>Maestro</td>
+          </tr>
+          <tr>
+            <td><img src="nivel6.png" style="width:40px; height:40px; border-radius:50%; object-fit:cover; border:2px solid #fd7e14;" /></td>
+            <td>Élite</td>
+          </tr>
+          <tr>
+            <td><img src="nivel7.png" style="width:40px; height:40px; border-radius:50%; object-fit:cover; border:2px solid #20c997;" /></td>
+            <td>Legendario</td>
+          </tr>
+          <tr>
+            <td><img src="nivel8.png" style="width:40px; height:40px; border-radius:50%; object-fit:cover; border:2px solid #6f42c1;" /></td>
+            <td>Supremo</td>
+          </tr>
+          <tr>
+            <td><img src="nivel9.png" style="width:40px; height:40px; border-radius:50%; object-fit:cover; border:2px solid #e83e8c;" /></td>
+            <td>Genio</td>
+          </tr>
+          <tr>
+            <td><img src="nivel10.png" style="width:40px; height:40px; border-radius:50%; object-fit:cover; border:2px solid #343a40;" /></td>
+            <td>Divino</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:20px; color:#555; font-size:1rem;">Desplázate para ver todos los niveles</div>
+  </div>
+</div>
+
+<!-- ...existing code... -->
+
+<div id="perfilModal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.5); z-index:1000; justify-content:center; align-items:center;">
+  <div class="modal-content" style="position:relative; width: 500px; height: 350px; background:white; border-radius:20px; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 4px 32px rgba(0,0,0,0.2);">
+    <button id="cerrarPerfil" style="position:absolute; top:8px; right:8px; font-size:1.7rem; background:none; border:none; cursor:pointer; z-index:10;">✖</button>
+    <h2 style="margin-bottom:18px;">Perfil</h2>
+    <br>
+    <div style="display:flex; justify-content:center; gap:32px; width:100%; margin-bottom:18px;">
+      <div style="display:flex; flex-direction:column; align-items:center;">
+        <img src="princesa_icon (2).png" alt="Princesa Dixia" style="width:70px; height:70px; border-radius:50%; object-fit:cover; border:2px solid #ff69b4; margin-bottom:8px;" />
+        <span style="font-size:1rem; color:#333;">Princesa Dixia</span>
+      </div>
+      <div style="display:flex; flex-direction:column; align-items:center;">
+        <img src="jinete_icon.png" alt="Jinete de dragón Tal" style="width:70px; height:70px; border-radius:50%; object-fit:cover; border:2px solid #007bff; margin-bottom:8px;" />
+        <span style="font-size:1rem; color:#333;">Jinete de dragón </span>
+      </div>
+      <div style="display:flex; flex-direction:column; align-items:center;">
+        <img src="chica_icon.png" alt="Jinete de dragón Hansy" style="width:70px; height:70px; border-radius:50%; object-fit:cover; border:2px solid #28a745; margin-bottom:8px;" />
+        <span style="font-size:1rem; color:#333;">Jinete de dragón Hansy</span>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ...existing code... -->
+
+  <!-- Imagen principal del mapa -->
+  <main class="main-container">
+    <img src="back.png" alt="Mapa" class="main-image" />
+  <a href="dixiapr-20250606T020533Z-1-001/dixiapr/j2/"> <button class="boton-circular"></button> <!-- Botón dentro del mapa -->
+ </a> </main>
+  
+
+  <!-- Modal de bienvenida -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <h2>¡Bienvenido a DixiLand!</h2>
+      <p>Eres un héroe en una misión para salvar el mundo. Usa las teclas de dirección para moverte y evita a los enemigos.</p>
+      <button id="cerrar">¡Jugar!</button>
+    </div>
+  </div>
+
+  <script src="play.js"></script>
+</body>
+</html>

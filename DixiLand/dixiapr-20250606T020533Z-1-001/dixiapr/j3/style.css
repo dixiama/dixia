@@ -1,0 +1,80 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background-image: url('A_vibrant,_cartoonish_digital_illustration_depicts.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+.game-container {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 30px 40px;
+  border-radius: 30px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 90%;
+  max-width: 700px;
+  animation: fadeIn 0.8s ease;
+}
+
+h1 {
+  font-size: 26px;
+  color: #ff6f61;
+  margin-bottom: 20px;
+}
+
+.sentence-box {
+  background-color: #fff7d6;
+  padding: 20px;
+  border-radius: 15px;
+  font-size: 22px;
+  margin-bottom: 25px;
+  border: 2px dashed #ffafcc;
+  min-height: 45px;
+}
+
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+button {
+  background-color: #ffb703;
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 20px;
+  font-size: 18px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #faa307;
+}
+
+.button-group {
+  margin-top: 10px;
+}
+
+#feedback {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 10px;
+  min-height: 30px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}

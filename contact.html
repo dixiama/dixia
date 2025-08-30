@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="img/logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="img/logo (3).png" > 
+    <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Dixia-Contact</title>
+        
+        <!-- Link a la hoja de estilos de Bootstrap 5 -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEJ02t8v4aq6iN1S46oV6oQwMkZ2g91o8XJ6IK5r8LDO+QdVtT5fCZw6yT/5m" crossorigin="anonymous">
+        <!-- Link a los iconos de Bootstrap -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+</head>
+<body>
+
+    <header>
+        <img src="img/5.png" height="70px" alt="">
+        <nav>
+        <a href="contacto.html" class="active">Contact</a>  
+          <a href="index.html">Home</a>
+            <a href="library.html">Library</a>
+            
+        </nav>
+    </header>
+       
+    
+        <style>
+            /* Estilos globales para el fondo de la página */
+            body {
+                background-color:  #313233; 
+                font-family: 'Arial', sans-serif; /* Tipo de fuente */
+            }
+    
+            /* Estilos para la tarjeta que contiene el formulario */
+            .card {
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+                border-radius: 10px; /* Bordes redondeados */
+                background-color: #ffffff; /* Fondo blanco */
+            }
+    
+            /* Estilo para la cabecera de la tarjeta */
+            .card-header {
+                background-color: #1976d2; /* Color de fondo azul para el encabezado */
+                color: #fff; /* Texto en blanco */
+                padding: 15px; /* Espaciado interno */
+                border-radius: 10px 10px 0 0; /* Bordes redondeados solo arriba */
+            }
+    
+            /* Estilo para el título de la cabecera */
+            .card-header h4 {
+                font-size: 1.6rem; /* Tamaño de fuente para el título */
+            }
+    
+            /* Estilo para las etiquetas de los campos del formulario */
+            .form-label {
+                font-weight: bold; /* Hace las etiquetas más visibles */
+                color: #1976d2; /* Color azul para las etiquetas */
+            }
+    
+            /* Estilos para los campos de entrada (input, textarea) */
+            .form-control {
+                border-radius: 8px; /* Bordes redondeados en los campos */
+                padding: 12px; /* Espaciado interno */
+                font-size: 1rem; /* Tamaño de la fuente */
+                border: 2px solid #ddd; /* Borde gris claro */
+            }
+    
+            /* Estilos cuando el campo de entrada está enfocado (activo) */
+            .form-control:focus {
+                border-color: #1976d2; /* Borde azul cuando está enfocado */
+                box-shadow: 0 0 0 0.2rem rgba(25, 118, 210, 0.25); /* Sombra azul */
+            }
+    
+            /* Estilo para los botones de opción (radio buttons) */
+            .form-check-input {
+                margin-top: 7px; /* Ajusta el espacio de los botones de opción */
+            }
+    
+            /* Estilo para el botón de envío */
+            .btn-primary {
+                background-color: #1976d2; /* Fondo azul para el botón */
+                border-color: #1976d2; /* Borde azul para el botón */
+                padding: 8px 16px; /* Espaciado interno */
+                font-size: 1rem; /* Tamaño de la fuente */
+                width: auto; /* Ajuste automático del tamaño del botón */
+                border-radius: 8px; /* Bordes redondeados */
+            }
+    
+            /* Estilo para el botón cuando pasa el cursor por encima (hover) */
+            .btn-primary:hover {
+                background-color: #1565c0; /* Cambio de color a un azul más oscuro */
+                border-color: #1565c0; /* Cambio de borde */
+            }
+    
+            /* Estilo para los iconos en el botón */
+            .icono-boton {
+                margin-left: 8px; /* Espacio entre el texto y el icono */
+            }
+    
+            /* Espaciado entre las secciones del formulario */
+            .mb-4 {
+                margin-bottom: 1.5rem; /* Espacio de 1.5rem debajo de cada sección */
+            }
+    
+            /* Espaciado en la tarjeta */
+            .card-body {
+                padding: 20px; /* Espaciado interno en el cuerpo de la tarjeta */
+            }
+    
+            /* Color del texto en los campos de texto cuando están vacíos */
+            .form-control::placeholder {
+                color: #aaa; /* Color gris claro para el texto de los placeholders */
+            }
+    
+            /* Estilo para centrar el formulario en la página */
+            .main-container {
+                min-height: 100vh; /* Al menos el 100% de la altura de la ventana */
+                display: flex; /* Usamos flexbox para centrar el contenido */
+                justify-content: center; /* Centrado horizontal */
+                align-items: center; /* Centrado vertical */
+            }
+    
+            /* Aseguramos que en pantallas grandes las columnas se distribuyan bien */
+            @media (min-width: 576px) {
+                .form-row {
+                    display: flex; /* Usamos flexbox para las filas */
+                    gap: 1rem; /* Espacio entre las columnas */
+                }
+            }
+    
+            /* Estilo para las etiquetas de los botones de opción (Género) */
+            .form-check-label {
+                color: black; /* Cambia el color del texto a negro */
+            }
+        </style>
+    </head>
+    <body>
+    
+    <!-- Contenedor principal para centrar el formulario en la página -->
+    <section class="main-container">
+        <div class="card shadow col-xs-12 col-sm-6 col-md-6 col-lg-4 p-4">
+            <!-- Encabezado de la tarjeta -->
+            <div class="card-header d-flex justify-content-start align-items-center">
+                <i class="bi bi-chat-left-quote"></i>&nbsp;
+                <h4>Contact Form</h4> <!-- Título del formulario -->
+            </div>
+            
+            <!-- Cuerpo del formulario -->
+            <div class="card-body">
+                <form action="https://formspree.io/f/mvgorzzz" method="POST">
+                    <!-- Fila para Nombre y Apellido -->
+                    <div class="form-row mb-4">
+                        <div class="col">
+                            <!-- Campo de Nombre -->
+                            <label for="nombre" class="form-label"><i class="bi bi-person-fill"></i> Name</label>
+                            <input type="text" class="form-control" name="firstName" id="nombre" required>
+                        </div>
+    
+                        <div class="col">
+                            <!-- Campo de Apellido -->
+                            <label for="apellido" class="form-label"><i class="bi bi-person-bounding-box"></i> Surname</label>
+                            <input type="text" class="form-control" name="lastName" id="apellido" required>
+                        </div>
+                    </div>
+    
+                    <!-- Fila para Correo y Género -->
+                    <div class="form-row mb-4">
+                        <div class="col">
+                            <!-- Campo de Correo -->
+                            <label for="correo" class="form-label"><i class="bi bi-envelope-fill"></i> Mail</label>
+                            <input type="email" class="form-control" name="email" id="correo" required>
+                        </div>
+    
+                        <div class="col">
+                            <!-- Campo de Género -->
+                            <label for="sexo" class="form-label"><i class="bi bi-gender-ambiguous"></i> Gender</label><br>
+                            <input type="radio" class="form-check-input" name="gender" value="masculino"> <label for="masculino" class="form-check-label">Male</label>
+                            <input type="radio" class="form-check-input" name="gender" value="femenino"> <label for="femenino" class="form-check-label">Female</label>
+                        </div>
+                    </div>
+    
+                    <!-- Campo de Mensaje -->
+                    <div class="mb-4">
+                        <label for="mensaje" class="form-label"><i class="bi bi-chat-right-dots-fill"></i> Message</label>
+                        <textarea name="message" id="mensaje" class="form-control"rows="4" required></textarea>
+                    </div>
+    
+                    <!-- Botón de Enviar -->
+                    <button type="submit" class="btn btn-primary d-flex justify-content-between">
+                        <span>Submit</span>
+                        <i class="bi bi-cursor-fill icono-boton"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Scripts necesarios para el funcionamiento de Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybL8k29zD82ZJfg5i3a2t0zHzgKhq5f4Th6G9v3t7SgLlXwYKm" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0u7JTLu7hpGg8oWwWe5M4lDD1Fc19fjsV7tvsH0Q3Y8kbX6A4" crossorigin="anonymous"></script>
+    
+    </body>
+    </html>
+    
+   
