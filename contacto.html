@@ -1,209 +1,584 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <link rel="shortcut icon" href="img/logo.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/x-icon" href="img/logo (3).png" > 
-    <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Dixia-Contacto</title>
-        
-        <!-- Link a la hoja de estilos de Bootstrap 5 -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEJ02t8v4aq6iN1S46oV6oQwMkZ2g91o8XJ6IK5r8LDO+QdVtT5fCZw6yT/5m" crossorigin="anonymous">
-        <!-- Link a los iconos de Bootstrap -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <title>Sobre Nosotros - Nuestro Proyecto</title>
+    <style>
+        /* Reset y estilos base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #ffffff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            color: white;
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Definición del Proyecto */
+        .project-definition {
+            padding: 80px 0;
+            background-color: #f8fafc;
+        }
+
+        .project-definition h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #1e40af;
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+
+        .definition-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .definition-content p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            text-align: justify;
+            color: #4b5563;
+        }
+
+        /* Sección del Equipo */
+        .team-section {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .team-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #1e40af;
+            margin-bottom: 60px;
+            font-weight: 600;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .team-member {
+            text-align: center;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(30, 64, 175, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: white;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(30, 64, 175, 0.15);
+        }
+
+        .member-image {
+            margin-bottom: 20px;
+        }
+
+        .member-image img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #3b82f6;
+        }
+
+        .team-member h3 {
+            font-size: 1.5rem;
+            color: #1e40af;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .team-member .role {
+            font-size: 1rem;
+            color: #3b82f6;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .team-member .description {
+            font-size: 0.95rem;
+            color: #6b7280;
+            line-height: 1.5;
+        }
+
+        /* Sección de Contacto */
+        .contact-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+        }
+
+        .contact-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #1e40af;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .contact-section > .container > p {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #6b7280;
+            margin-bottom: 50px;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(30, 64, 175, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #374151;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+
+        .rating-stars {
+            display: flex;
+            gap: 5px;
+            margin-top: 5px;
+        }
+
+        .star {
+            font-size: 1.5rem;
+            color: #d1d5db;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .star:hover,
+        .star.active {
+            color: #fbbf24;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3);
+        }
+
+        .success-message {
+            max-width: 600px;
+            margin: 20px auto 0;
+            padding: 20px;
+            background: #d1fae5;
+            border: 1px solid #10b981;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .success-message p {
+            color: #065f46;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #1e40af;
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        .footer p {
+            opacity: 0.9;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .header p {
+                font-size: 1rem;
+            }
+            
+            .project-definition h2,
+            .team-section h2,
+            .contact-section h2 {
+                font-size: 2rem;
+            }
+            
+            .team-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .contact-form {
+                padding: 30px 20px;
+            }
+            
+            .container {
+                padding: 0 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 60px 0;
+            }
+            
+            .project-definition,
+            .team-section,
+            .contact-section {
+                padding: 60px 0;
+            }
+            
+            .member-image img {
+                width: 120px;
+                height: 120px;
+            }
+        }
+    </style>
 </head>
 <body>
-
-    <header>
-        <img src="img/5.png" height="70px" alt="">
-        <nav>
-            <a href="index.html">Inicio</a>
-            <a href="biblioteca.html">Biblioteca</a>
-            <a href="contacto.html" class="active">Contacto</a>
-        </nav>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1>Sobre Nosotros</h1>
+            <p>Conoce más sobre nuestro proyecto y equipo</p>
+        </div>
     </header>
-       
-    
-        <style>
-            /* Estilos globales para el fondo de la página */
-            body {
-                background-color:  #313233; 
-                font-family: 'Arial', sans-serif; /* Tipo de fuente */
-            }
-    
-            /* Estilos para la tarjeta que contiene el formulario */
-            .card {
-                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-                border-radius: 10px; /* Bordes redondeados */
-                background-color: #ffffff; /* Fondo blanco */
-            }
-    
-            /* Estilo para la cabecera de la tarjeta */
-            .card-header {
-                background-color: #1976d2; /* Color de fondo azul para el encabezado */
-                color: #fff; /* Texto en blanco */
-                padding: 15px; /* Espaciado interno */
-                border-radius: 10px 10px 0 0; /* Bordes redondeados solo arriba */
-            }
-    
-            /* Estilo para el título de la cabecera */
-            .card-header h4 {
-                font-size: 1.6rem; /* Tamaño de fuente para el título */
-            }
-    
-            /* Estilo para las etiquetas de los campos del formulario */
-            .form-label {
-                font-weight: bold; /* Hace las etiquetas más visibles */
-                color: #1976d2; /* Color azul para las etiquetas */
-            }
-    
-            /* Estilos para los campos de entrada (input, textarea) */
-            .form-control {
-                border-radius: 8px; /* Bordes redondeados en los campos */
-                padding: 12px; /* Espaciado interno */
-                font-size: 1rem; /* Tamaño de la fuente */
-                border: 2px solid #ddd; /* Borde gris claro */
-            }
-    
-            /* Estilos cuando el campo de entrada está enfocado (activo) */
-            .form-control:focus {
-                border-color: #1976d2; /* Borde azul cuando está enfocado */
-                box-shadow: 0 0 0 0.2rem rgba(25, 118, 210, 0.25); /* Sombra azul */
-            }
-    
-            /* Estilo para los botones de opción (radio buttons) */
-            .form-check-input {
-                margin-top: 7px; /* Ajusta el espacio de los botones de opción */
-            }
-    
-            /* Estilo para el botón de envío */
-            .btn-primary {
-                background-color: #1976d2; /* Fondo azul para el botón */
-                border-color: #1976d2; /* Borde azul para el botón */
-                padding: 8px 16px; /* Espaciado interno */
-                font-size: 1rem; /* Tamaño de la fuente */
-                width: auto; /* Ajuste automático del tamaño del botón */
-                border-radius: 8px; /* Bordes redondeados */
-            }
-    
-            /* Estilo para el botón cuando pasa el cursor por encima (hover) */
-            .btn-primary:hover {
-                background-color: #1565c0; /* Cambio de color a un azul más oscuro */
-                border-color: #1565c0; /* Cambio de borde */
-            }
-    
-            /* Estilo para los iconos en el botón */
-            .icono-boton {
-                margin-left: 8px; /* Espacio entre el texto y el icono */
-            }
-    
-            /* Espaciado entre las secciones del formulario */
-            .mb-4 {
-                margin-bottom: 1.5rem; /* Espacio de 1.5rem debajo de cada sección */
-            }
-    
-            /* Espaciado en la tarjeta */
-            .card-body {
-                padding: 20px; /* Espaciado interno en el cuerpo de la tarjeta */
-            }
-    
-            /* Color del texto en los campos de texto cuando están vacíos */
-            .form-control::placeholder {
-                color: #aaa; /* Color gris claro para el texto de los placeholders */
-            }
-    
-            /* Estilo para centrar el formulario en la página */
-            .main-container {
-                min-height: 100vh; /* Al menos el 100% de la altura de la ventana */
-                display: flex; /* Usamos flexbox para centrar el contenido */
-                justify-content: center; /* Centrado horizontal */
-                align-items: center; /* Centrado vertical */
-            }
-    
-            /* Aseguramos que en pantallas grandes las columnas se distribuyan bien */
-            @media (min-width: 576px) {
-                .form-row {
-                    display: flex; /* Usamos flexbox para las filas */
-                    gap: 1rem; /* Espacio entre las columnas */
-                }
-            }
-    
-            /* Estilo para las etiquetas de los botones de opción (Género) */
-            .form-check-label {
-                color: black; /* Cambia el color del texto a negro */
-            }
-        </style>
-    </head>
-    <body>
-    
-    <!-- Contenedor principal para centrar el formulario en la página -->
-    <section class="main-container">
-        <div class="card shadow col-xs-12 col-sm-6 col-md-6 col-lg-4 p-4">
-            <!-- Encabezado de la tarjeta -->
-            <div class="card-header d-flex justify-content-start align-items-center">
-                <i class="bi bi-chat-left-quote"></i>&nbsp;
-                <h4>Formulario de Contacto</h4> <!-- Título del formulario -->
-            </div>
-            
-            <!-- Cuerpo del formulario -->
-            <div class="card-body">
-                <form action="https://formspree.io/f/mvgorzzz" method="POST">
-                    <!-- Fila para Nombre y Apellido -->
-                    <div class="form-row mb-4">
-                        <div class="col">
-                            <!-- Campo de Nombre -->
-                            <label for="nombre" class="form-label"><i class="bi bi-person-fill"></i> Nombre</label>
-                            <input type="text" class="form-control" name="firstName" id="nombre" required>
-                        </div>
-    
-                        <div class="col">
-                            <!-- Campo de Apellido -->
-                            <label for="apellido" class="form-label"><i class="bi bi-person-bounding-box"></i> Apellido</label>
-                            <input type="text" class="form-control" name="lastName" id="apellido" required>
-                        </div>
-                    </div>
-    
-                    <!-- Fila para Correo y Género -->
-                    <div class="form-row mb-4">
-                        <div class="col">
-                            <!-- Campo de Correo -->
-                            <label for="correo" class="form-label"><i class="bi bi-envelope-fill"></i> Correo</label>
-                            <input type="email" class="form-control" name="email" id="correo" required>
-                        </div>
-    
-                        <div class="col">
-                            <!-- Campo de Género -->
-                            <label for="sexo" class="form-label"><i class="bi bi-gender-ambiguous"></i> Género</label><br>
-                            <input type="radio" class="form-check-input" name="gender" value="masculino"> <label for="masculino" class="form-check-label">Masculino</label>
-                            <input type="radio" class="form-check-input" name="gender" value="femenino"> <label for="femenino" class="form-check-label">Femenino</label>
-                        </div>
-                    </div>
-    
-                    <!-- Campo de Mensaje -->
-                    <div class="mb-4">
-                        <label for="mensaje" class="form-label"><i class="bi bi-chat-right-dots-fill"></i> Mensaje</label>
-                        <textarea name="message" id="mensaje" class="form-control"rows="4" required></textarea>
-                    </div>
-    
-                    <!-- Botón de Enviar -->
-                    <button type="submit" class="btn btn-primary d-flex justify-content-between">
-                        <span>Enviar</span>
-                        <i class="bi bi-cursor-fill icono-boton"></i>
-                    </button>
-                </form>
+
+    <!-- Definición del Proyecto -->
+    <section class="project-definition">
+        <div class="container">
+            <h2>Nuestro Proyecto</h2>
+            <div class="definition-content">
+                <p>
+                    Somos una empresa innovadora dedicada a desarrollar soluciones tecnológicas que transforman 
+                    la manera en que las personas interactúan con la tecnología. Nuestro proyecto nace de la 
+                    necesidad de crear herramientas más intuitivas, accesibles y eficientes para el mundo digital.
+                </p>
+                <p>
+                    Con un enfoque centrado en el usuario, desarrollamos productos que no solo resuelven problemas 
+                    complejos, sino que también mejoran la experiencia diaria de nuestros clientes. Creemos en la 
+                    innovación responsable y en el poder de la tecnología para crear un impacto positivo en la sociedad.
+                </p>
+                <p>
+                    Nuestro compromiso es ofrecer soluciones de alta calidad, respaldadas por un equipo de 
+                    profesionales apasionados y con amplia experiencia en sus respectivas áreas de especialización.
+                </p>
             </div>
         </div>
     </section>
-    
-    <!-- Scripts necesarios para el funcionamiento de Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybL8k29zD82ZJfg5i3a2t0zHzgKhq5f4Th6G9v3t7SgLlXwYKm" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0u7JTLu7hpGg8oWwWe5M4lDD1Fc19fjsV7tvsH0Q3Y8kbX6A4" crossorigin="anonymous"></script>
-    
-    </body>
-    </html>
-    
-   
+
+    <!-- Equipo -->
+    <section class="team-section">
+        <div class="container">
+            <h2>Nuestro Equipo</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="/placeholder.svg?height=200&width=200" alt="María González">
+                    </div>
+                    <h3>María González</h3>
+                    <p class="role">CEO & Fundadora</p>
+                    <p class="description">
+                        Con más de 15 años de experiencia en tecnología y liderazgo empresarial, 
+                        María lidera nuestra visión estratégica y desarrollo organizacional.
+                    </p>
+                </div>
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="/placeholder.svg?height=200&width=200" alt="Carlos Rodríguez">
+                    </div>
+                    <h3>Carlos Rodríguez</h3>
+                    <p class="role">CTO & Co-fundador</p>
+                    <p class="description">
+                        Experto en arquitectura de software y desarrollo de productos. Carlos supervisa 
+                        toda la infraestructura técnica y la innovación tecnológica de nuestros proyectos.
+                    </p>
+                </div>
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="/placeholder.svg?height=200&width=200" alt="Ana Martínez">
+                    </div>
+                    <h3>Ana Martínez</h3>
+                    <p class="role">Directora de Diseño</p>
+                    <p class="description">
+                        Especialista en UX/UI con un enfoque centrado en el usuario. Ana se encarga de 
+                        crear experiencias digitales intuitivas y visualmente atractivas.
+                    </p>
+                </div>
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="/placeholder.svg?height=200&width=200" alt="Luis Fernández">
+                    </div>
+                    <h3>Luis Fernández</h3>
+                    <p class="role">Director de Marketing</p>
+                    <p class="description">
+                        Estratega de marketing digital con amplia experiencia en crecimiento de productos. 
+                        Luis lidera nuestras iniciativas de comunicación y expansión de mercado.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formulario de Contacto -->
+    <section class="contact-section">
+        <div class="container">
+            <h2>Contáctanos</h2>
+            <p>¿Tienes alguna pregunta o comentario? Nos encantaría escucharte.</p>
+            
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name">Nombre completo *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Correo electrónico *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Asunto</label>
+                    <input type="text" id="subject" name="subject">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Mensaje o reseña *</label>
+                    <textarea id="message" name="message" rows="5" required placeholder="Comparte tu mensaje, pregunta o reseña sobre nuestro proyecto..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="rating">Calificación (opcional)</label>
+                    <div class="rating-stars" id="ratingStars">
+                        <span class="star" data-rating="1">★</span>
+                        <span class="star" data-rating="2">★</span>
+                        <span class="star" data-rating="3">★</span>
+                        <span class="star" data-rating="4">★</span>
+                        <span class="star" data-rating="5">★</span>
+                    </div>
+                    <input type="hidden" id="rating" name="rating" value="0">
+                </div>
+
+                <button type="submit" class="submit-btn">Enviar Mensaje</button>
+            </form>
+
+            <div class="success-message" id="successMessage" style="display: none;">
+                <p>¡Gracias por tu mensaje! Te responderemos pronto.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Nuestro Proyecto. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Funcionalidad para las estrellas de calificación
+        document.addEventListener('DOMContentLoaded', function() {
+            const stars = document.querySelectorAll('.star');
+            const ratingInput = document.getElementById('rating');
+            let currentRating = 0;
+
+            stars.forEach((star, index) => {
+                star.addEventListener('click', function() {
+                    currentRating = index + 1;
+                    ratingInput.value = currentRating;
+                    updateStars();
+                });
+
+                star.addEventListener('mouseover', function() {
+                    highlightStars(index + 1);
+                });
+            });
+
+            document.getElementById('ratingStars').addEventListener('mouseleave', function() {
+                updateStars();
+            });
+
+            function updateStars() {
+                stars.forEach((star, index) => {
+                    if (index < currentRating) {
+                        star.classList.add('active');
+                    } else {
+                        star.classList.remove('active');
+                    }
+                });
+            }
+
+            function highlightStars(rating) {
+                stars.forEach((star, index) => {
+                    if (index < rating) {
+                        star.style.color = '#fbbf24';
+                    } else {
+                        star.style.color = '#d1d5db';
+                    }
+                });
+            }
+
+            // Funcionalidad del formulario
+            const contactForm = document.getElementById('contactForm');
+            const successMessage = document.getElementById('successMessage');
+
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const message = document.getElementById('message').value.trim();
+
+                if (!name || !email || !message) {
+                    alert('Por favor, completa todos los campos obligatorios.');
+                    return;
+                }
+
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    alert('Por favor, ingresa un correo electrónico válido.');
+                    return;
+                }
+
+                submitForm();
+            });
+
+            function submitForm() {
+                const submitBtn = document.querySelector('.submit-btn');
+                const originalText = submitBtn.textContent;
+                submitBtn.textContent = 'Enviando...';
+                submitBtn.disabled = true;
+
+                setTimeout(() => {
+                    successMessage.style.display = 'block';
+                    contactForm.style.display = 'none';
+                    successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                    setTimeout(() => {
+                        contactForm.reset();
+                        currentRating = 0;
+                        ratingInput.value = 0;
+                        updateStars();
+                        contactForm.style.display = 'block';
+                        successMessage.style.display = 'none';
+                        submitBtn.textContent = originalText;
+                        submitBtn.disabled = false;
+                    }, 3000);
+                }, 1500);
+            }
+
+            // Animación suave al hacer scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            const sections = document.querySelectorAll('.project-definition, .team-section, .contact-section');
+            sections.forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(30px)';
+                section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(section);
+            });
+
+            const teamMembers = document.querySelectorAll('.team-member');
+            teamMembers.forEach((member, index) => {
+                member.style.opacity = '0';
+                member.style.transform = 'translateY(30px)';
+                member.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+                observer.observe(member);
+            });
+        });
+
+        // Scroll suave para navegación interna
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
