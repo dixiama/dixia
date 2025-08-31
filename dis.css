@@ -15,19 +15,37 @@ h2{
     margin-left: 5%;
     margin-right: 5%;
 }
-header{
-    width: 1140px;
-    max-width: 80%;
+header {
+    width: 100%;             /* que ocupe todo el ancho */
+    max-width: 1140px;       /* límite en pantallas grandes */
     margin: auto;
-    height: 50px;
+    height: 60px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     position: relative;
     z-index: 100;
+    padding: 0 20px;
     color: #eee;
     font-size: 150%;
-    background-color: rgba(128, 128, 128, 0);
+    background-color: transparent;
+     position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 200;
+    background: transparent; /* sin fondo */
 }
+
+header nav {
+    display: flex;
+    gap: 15px;
+}
+
 ul{
     margin-left: 5%;
 }
@@ -51,6 +69,8 @@ header a:hover{
     border-radius: 2px;
     border-radius: 15px; 
 }*/ 
+
+
 
 *{
     box-sizing: border-box;
@@ -120,6 +140,54 @@ button:hover{
 #hero button{
     font-size: 1.75em;
 }
+
+/* Botón hamburguesa mejorado */
+#menu-btn {
+  display: none;
+  font-size: 32px;
+  line-height: 1;
+  color: white;        /* blanco para que resalte */
+  background: none;    /* sin fondo */
+  border: none;
+  cursor: pointer;
+  margin-left: auto;   /* empuja el botón a la derecha */
+  z-index: 110;        /* encima del menú */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  header {
+    justify-content: space-between; /* logo a la izq, botón a la der */
+  }
+
+  header nav {
+    position: absolute;
+    top: 70px;           /* justo debajo del header */
+    right: 0;
+    background: #222;    /* fondo uniforme */
+    display: none;
+    flex-direction: column;
+    width: 220px;
+    padding: 15px;
+    border-radius: 8px;
+  }
+
+  header nav.show {
+    display: flex;
+  }
+
+  header nav a {
+    display: inline-block;
+    width: auto;
+    margin-bottom: 10px;
+    border-radius: 15px;
+  }
+
+  #menu-btn {
+    display: block;      /* aparece el botón */
+  }
+}
+
 
 #somos-proya .container{
     text-align: center;

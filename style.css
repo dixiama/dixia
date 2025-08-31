@@ -46,6 +46,53 @@ header a:hover{
     border-radius: 15px; /* Hacer el botón un poco redondeado */
 }
 
+/* Botón hamburguesa */
+
+/* Botón de 3 rayas: oculto en desktop, a la derecha en mobile */
+#menu-btn {
+  display: none;
+  font-size: 32px;
+  line-height: 1;
+  color: #fff;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  margin-left: auto; /* Empuja el botón al lado opuesto del logo */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  header nav {
+    position: absolute;
+    top: 60px;          /* debajo del header */
+    right: 0;
+    background: #333;   /* para que se vea sobre el fondo */
+    display: none;      /* oculto por defecto en mobile */
+    flex-direction: column;
+    width: 220px;
+    padding: 15px;
+    border-radius: 8px;
+  }
+
+  header nav.show {
+    display: flex;      /* se muestra al tocar las 3 rayas */
+  }
+
+  #menu-btn {
+    display: block;     /* mostrar botón en mobile */
+  }
+}
+
+@media (max-width: 768px) {
+  header nav a {
+    display: inline-block;     /* en lugar de ocupar todo el ancho */
+    width: auto;               /* se ajusta al texto */
+    margin-bottom: 10px;       /* espacio entre botones */
+    border-radius: 15px;       /* mantiene la forma redondeada */
+  }
+}
+
+
 
 /* slider section  */
 

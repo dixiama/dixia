@@ -44,4 +44,12 @@ function moveSlider(direction) {
     }, {once: true}) // Remove the event listener after it's triggered once
 }
 
+document.addEventListener('DOMContentLoaded', function () {
+  const btn = document.getElementById('menu-btn');
+  const nav = document.querySelector('header nav');
+
+  btn.addEventListener('click', function () {
+    nav.classList.toggle('show');
+  });
+});
 

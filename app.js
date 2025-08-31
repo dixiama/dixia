@@ -53,3 +53,14 @@ if (translate) {
   Alert();
    
 } 
+
+document.addEventListener('DOMContentLoaded', function () {
+  const btn = document.getElementById('menu-btn');
+  const nav = document.querySelector('header nav');
+
+  btn.addEventListener('click', function () {
+    nav.classList.toggle('show');
+  });
+});
+
+
