@@ -85,7 +85,6 @@ body{
     margin: 0;
       font-family: Arial, sans-serif;
       background: #f9f9f9;
-      padding: 20px;
 }
 
 h1{ font-size: 3.5em !important}
@@ -573,4 +572,8 @@ button:hover{
   color: white;
   cursor: pointer;
   z-index: 1000; /* aseguramos que quede arriba */
+}
+
+.espacio{
+    padding: 20px;
 }
