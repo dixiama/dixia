@@ -616,3 +616,73 @@ button:hover{
       }
     }
 
+    .espacio{
+        padding: 20px;
+    }
+
+/* Para pantallas grandes: mostrar imágenes en fila */
+@media (min-width: 768px) {
+  #preview {
+    flex-direction: row; /* en desktop lado a lado */
+    flex-wrap: wrap;     /* si no caben, bajan a la siguiente línea */
+    justify-content: center;
+  }
+
+  #preview img {
+    max-width: 45%; /* quepan dos por fila */
+  }
+}
+
+@media (min-width: 1200px) {
+  #preview img {
+    max-width: 30%; /* en pantallas grandes, tres por fila */
+  }
+}
+
+/* Modal de fondo */
+#modal {
+  display: none; /* oculto por defecto */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;   /* ocupa todo el ancho */
+  height: 100vh;  /* ocupa todo el alto */
+  background: rgba(0, 0, 0, 0.8); /* fondo oscuro */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  overflow-y: auto; /* si hay muchas imágenes, scroll vertical */
+  padding: 20px;
+}
+
+/* Contenedor de imágenes */
+#preview {
+  display: flex;
+  flex-direction: column; /* SIEMPRE en columna */
+  gap: 15px;
+  width: 100%;
+  max-width: 600px; /* límite de ancho para que no se estiren mucho */
+  margin: auto; /* centrado horizontal */
+}
+
+/* Las imágenes */
+#preview img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  object-fit: contain; /* mantiene proporción */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+
+/* Botón de cerrar */
+#closeModal {
+  position: fixed; /* fijo arriba a la derecha */
+  top: 20px;
+  right: 30px;
+  font-size: 2rem;
+  color: rgb(88, 84, 84);
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  z-index: 1100; /* más arriba que el modal */
+}
