@@ -464,9 +464,15 @@ button:hover{
             text-align: justify;
         }
 
-            .contenedor {
+      h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2rem;
+    }
+
+    .contenedor {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
       gap: 20px;
       justify-content: center;
     }
@@ -486,10 +492,9 @@ button:hover{
     }
 
     .card img {
-        max-width: 100%;
-        height: auto;    /* 🔥 mantiene proporciones */
-        object-fit: contain;
-     
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
     }
 
     .card-content {
@@ -497,8 +502,8 @@ button:hover{
     }
 
     .card h2 {
-      font-size: 20px;
-      margin: 0 0 10px;
+      font-size: 18px;
+      margin: 0 0 8px;
       color: #333;
     }
 
@@ -525,9 +530,10 @@ button:hover{
       background: #28a745;
       color: white;
       border: none;
-      padding: 5px 10px;
+      padding: 6px 12px;
       border-radius: 8px;
       cursor: pointer;
+      font-size: 14px;
     }
 
     /* ----------- MODAL ------------ */
@@ -547,40 +553,75 @@ button:hover{
     }
 
     .modal-content {
-        position: relative;
-        background: #fff;
-        border-radius: 12px;
-        width: 90%;         /* ocupa casi toda la pantalla en móvil */
-        max-width: 800px;   /* en desktop no pasa de 800px */
-        max-height: 90vh;
-        overflow-y: auto;
-        padding: 15px;
-}
-
-   
+      position: relative;
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 90%;
+      max-height: 90%;
+      overflow-y: auto;
+    }
 
     .modal img {
-    display: block;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    max-width: 100%;
-    height: auto;    /* 🔥 mantiene proporciones */
-    object-fit: contain;
-     
+      display: block;
+      width: 100%;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
     }
-    
-.close {
-  position: fixed;
-  top: 15px;
-  right: 20px;
-  font-size: clamp(20px, 4vw, 30px); /* escala según el ancho */
-  background: rgba(255,255,255,0.7); /* círculo blanco semitransparente */
-  border-radius: 50%;
-  padding: 5px 10px;
-}
 
+    .close {
+      position: fixed;
+      top: 15px;
+      right: 20px;
+      font-size: 32px;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+      z-index: 1000;
+    }
 
+    /* ----------- RESPONSIVE ------------ */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      .card img {
+        height: 150px;
+      }
+
+      .card h2 {
+        font-size: 16px;
+      }
+
+      .card p {
+        font-size: 13px;
+      }
+
+      .download-btn {
+        padding: 5px 10px;
+        font-size: 12px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 10px;
+      }
+
+      .contenedor {
+        grid-template-columns: 1fr;
+      }
+
+      .card img {
+        height: 140px;
+      }
+
+      h1 {
+        font-size: 1.2rem;
+      }
+    }
 .espacio{
     padding: 20px;
 }
