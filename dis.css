@@ -3,8 +3,8 @@ a{
 }
 
 p{
-    margin-left: 5%;
-    margin-right: 5%;
+    margin-left: 2%;
+    margin-right: 2%;
 }
 
 h1{
@@ -583,9 +583,6 @@ button:hover{
 
     /* ----------- RESPONSIVE ------------ */
     @media (max-width: 768px) {
-      h1 {
-        font-size: 1.5rem;
-      }
 
       .card img {
         height: 150px;
@@ -606,10 +603,6 @@ button:hover{
     }
 
     @media (max-width: 480px) {
-      body {
-        padding: 10px;
-      }
-
       .contenedor {
         grid-template-columns: 1fr;
       }
@@ -622,6 +615,4 @@ button:hover{
         font-size: 1.2rem;
       }
     }
-.espacio{
-    padding: 20px;
-}
+
