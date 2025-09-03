@@ -635,7 +635,7 @@ button:hover{
 
 @media (min-width: 1200px) {
   #preview img {
-    max-width: 30%; /* en pantallas grandes, tres por fila */
+    max-width: 100%; /* en pantallas grandes, tres por fila */
   }
 }
 
