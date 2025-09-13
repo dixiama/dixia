@@ -44,7 +44,7 @@ function moveSlider(direction) {
     }, {once: true}) // Remove the event listener after it's triggered once
 }
 
-function Alert() {
+/*function Alert() {
      window.location.href = "ingles.html";
 }
 let translate = confirm("Do you want to translate the page?");
@@ -52,7 +52,7 @@ let translate = confirm("Do you want to translate the page?");
 if (translate) {
   Alert();
    
-} 
+} */
 
 document.addEventListener('DOMContentLoaded', function () {
   const btn = document.getElementById('menu-btn');
