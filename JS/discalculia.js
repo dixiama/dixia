@@ -1,42 +1,41 @@
  const documentos = [
       {
-        titulo: "INTRODUCCIÓN",
-        descripcion: "Descubrí la pasión y la cultura de Argentina.",
+        titulo: "ACTIVIDADES",
+        descripcion: "Ejercicios matemáticos para mejorar habilidades numéricas.",
         imagenes: [
-          "canvas/Discalculia/",
-          "canvas/Discalculia",
-          "canvas/Discalculia",   
+          "canvas/Discalculia/act 2/1.png",
+          "canvas/Discalculia/act 2/2.png",
+          "canvas/Discalculia/act 2/3.png",
+          "canvas/Discalculia/act 2/4.png",
+          "canvas/Discalculia/act 2/5.png",
+          "canvas/Discalculia/act 2/6.png",
         ],
       
       },
             {
-        titulo: "INTRODUCCIÓN",
-        descripcion: "Descubrí la pasión y la cultura de Argentina.",
+        titulo: "ACTIVIDADES 2",
+        descripcion: "Ejercicios adicionales para mejorar habilidades matemáticas.",
         imagenes: [
-          "https://picsum.photos/id/1015/600/800",
-          "https://picsum.photos/id/1016/600/800",
-          "https://picsum.photos/id/1018/600/800"
+          "canvas/Discalculia/act/0.png",
+          "canvas/Discalculia/act/1.png",
+          "canvas/Discalculia/act/2.png",
+          "canvas/Discalculia/act/3.png",
+          "canvas/Discalculia/act/4.png",
+          "canvas/Discalculia/act/5.png",
         ],
       
       },      {
-        titulo: "INTRODUCCIÓN",
-        descripcion: "Descubrí la pasión y la cultura de Argentina.",
+        titulo: "ACTIVIDADES 3",
+        descripcion: "Más ejercicios para fortalecer habilidades numéricas.",
         imagenes: [
-          "https://picsum.photos/id/1015/600/800",
-          "https://picsum.photos/id/1016/600/800",
-          "https://picsum.photos/id/1018/600/800"
+          "canvas/Discalculia/act3/1.png",
+          "canvas/Discalculia/act3/2.png",
+          "canvas/Discalculia/act3/3.png",
+          "canvas/Discalculia/act3/4.png",
+          "canvas/Discalculia/act3/5.png",
         ],
       
-      },      {
-        titulo: "INTRODUCCIÓN",
-        descripcion: "Descubrí la pasión y la cultura de Argentina.",
-        imagenes: [
-          "https://picsum.photos/id/1015/600/800",
-          "https://picsum.photos/id/1016/600/800",
-          "https://picsum.photos/id/1018/600/800"
-        ],
-      
-      }
+      },    
     ];
 
     const contenedor = document.getElementById("contenedor");

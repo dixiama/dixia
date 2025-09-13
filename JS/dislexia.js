@@ -1,7 +1,7 @@
  const documentos = [
       {
-        titulo: "INTRODUCCIÓN",
-        descripcion: "Descubrí la pasión y la cultura de Argentina.",
+        titulo: "DISLEXIA",
+        descripcion: "Conceptos básicos sobre la dislexia.",
         imagenes: [
           "canvas/Dislexia/introDys.jpg",
           "canvas/Dislexia/introdyss.jpg",
@@ -10,30 +10,37 @@
       
       },
             {
-        titulo: "INTRODUCCIÓN",
-        descripcion: "Descubrí la pasión y la cultura de Argentina.",
+        titulo: "ACTIVIDADES",
+        descripcion: "Ejercicios para practicar la lectura y escritura.",
         imagenes: [
-          "https://picsum.photos/id/1015/600/800",
-          "https://picsum.photos/id/1016/600/800",
-          "https://picsum.photos/id/1018/600/800"
+          "canvas/Dislexia/act/1.png",
+          "canvas/Dislexia/act/2.png",
+          "canvas/Dislexia/act/3.png",
+          "canvas/Dislexia/act/4.png",
+          "canvas/Dislexia/act/5.png",
+          "canvas/Dislexia/act/6.png",
         ],
       
       },      {
-        titulo: "INTRODUCCIÓN",
-        descripcion: "Descubrí la pasión y la cultura de Argentina.",
+        titulo: "ACTIVIDADES 2",
+        descripcion: "Otras actividades para mejorar habilidades.",
         imagenes: [
-          "https://picsum.photos/id/1015/600/800",
-          "https://picsum.photos/id/1016/600/800",
-          "https://picsum.photos/id/1018/600/800"
+          "canvas/Dislexia/act1/0.png",
+          "canvas/Dislexia/act1/1.png",
+          "canvas/Dislexia/act1/2.png",
+          "canvas/Dislexia/act1/3.png",
+          "canvas/Dislexia/act1/4.png",
         ],
       
       },      {
-        titulo: "INTRODUCCIÓN",
-        descripcion: "Descubrí la pasión y la cultura de Argentina.",
+        titulo: "ACTIVIDADES 3",
+        descripcion: "Más ejercicios y prácticas.",
         imagenes: [
-          "https://picsum.photos/id/1015/600/800",
-          "https://picsum.photos/id/1016/600/800",
-          "https://picsum.photos/id/1018/600/800"
+          "canvas/Dislexia/act2/1.png",
+          "canvas/Dislexia/act2/2.png",
+          "canvas/Dislexia/act2/3.png",
+          "canvas/Dislexia/act2/4.png",
+          "canvas/Dislexia/act2/5.png",
         ],
       
       }

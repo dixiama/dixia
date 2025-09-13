@@ -1,42 +1,39 @@
  const documentos = [
       {
-        titulo: "INTRODUCCIÓN",
-        descripcion: "Descubrí la pasión y la cultura de Argentina.",
+        titulo: "ACTIVIDADES",
+        descripcion: "Ejercicios para practicar la escritura y mejorar la motricidad fina.",
         imagenes: [
-          "canvas/Disgrafia/",
-          "canvas/Disgrafia/",
-           "canvas/Disgrafia/"
+          "canvas/Disgrafia/act/0.png",
+          "canvas/Disgrafia/act/1.png",
+           "canvas/Disgrafia/act/2.png",
+          "canvas/Disgrafia/act/3.png",
+          "canvas/Disgrafia/act/4.png",
         ],
       
       },
             {
-        titulo: "INTRODUCCIÓN",
-        descripcion: "Descubrí la pasión y la cultura de Argentina.",
+        titulo: "ACTIVIDADES 2",
+        descripcion: "Ejercicios adicionales para mejorar la coordinación y precisión.",
         imagenes: [
-          "https://picsum.photos/id/1015/600/800",
-          "https://picsum.photos/id/1016/600/800",
-          "https://picsum.photos/id/1018/600/800"
+          "canvas/Disgrafia/act1/1.png",
+          "canvas/Disgrafia/act1/2.png",
+          "canvas/Disgrafia/act1/3.png",
+          "canvas/Disgrafia/act1/4.png",
+          "canvas/Disgrafia/act1/5.png",
         ],
       
       },      {
-        titulo: "INTRODUCCIÓN",
-        descripcion: "Descubrí la pasión y la cultura de Argentina.",
+        titulo: "ACTIVIDADES 3",
+        descripcion: "Más ejercicios prácticos para fortalecer habilidades.",
         imagenes: [
-          "https://picsum.photos/id/1015/600/800",
-          "https://picsum.photos/id/1016/600/800",
-          "https://picsum.photos/id/1018/600/800"
+          "canvas/Disgrafia/act2/0.png",
+          "canvas/Disgrafia/act2/1.png",
+          "canvas/Disgrafia/act2/2.png",
+          "canvas/Disgrafia/act2/3.png",
+          "canvas/Disgrafia/act2/4.png",
         ],
       
-      },      {
-        titulo: "INTRODUCCIÓN",
-        descripcion: "Descubrí la pasión y la cultura de Argentina.",
-        imagenes: [
-          "https://picsum.photos/id/1015/600/800",
-          "https://picsum.photos/id/1016/600/800",
-          "https://picsum.photos/id/1018/600/800"
-        ],
-      
-      }
+      }, 
     ];
 
     const contenedor = document.getElementById("contenedor");
