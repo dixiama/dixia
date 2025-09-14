@@ -1,134 +1,378 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="icon" type="image/x-icon" href="logo (3).png">
-  <title>DixiLand</title>
-  <link rel="stylesheet" href="play.css" />
+  <meta charset="UTF-8">
+  <title> DixiLand- Juegos</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(180deg, #eafaf1, #ffffff);
+      margin: 0;
+      padding: 30px;
+      color: #0f172a;
+    }
+    h1 {
+      text-align: center;
+      color: #0a0e71;
+    }
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    .stat {
+      background: white;
+      border-radius: 14px;
+      padding: 15px 25px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+    .stat strong {
+      font-size: 20px;
+      display: block;
+      margin-top: 5px;
+    }
+    .unit {
+      max-width: 500px;
+      margin: 20px auto;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+      padding: 20px;
+    }
+    .unit h2 {
+      margin-top: 0;
+      color: #2a2258;
+    }
+    .lesson {
+      cursor: pointer;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 12px;
+      background: #f7fffb;
+      border: 1px solid #d7f2e5;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+    .lesson:hover {
+      background: #e9fff3;
+    }
+    .lesson.completed {
+      background: linear-gradient(90deg, #1d3689, #0d0d58);
+      color: white;
+      border: none;
+    }
+    .lesson.locked {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .lesson .icon {
+      font-size: 22px;
+    }
+    #modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      justify-content: center; align-items: center;
+      z-index: 1000;
+    }
+    #modalContent {
+      background: #fff;
+      padding: 25px;
+      border-radius: 14px;
+      width: 320px;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+      animation: fadeIn 0.3s ease;
+    }
+    #modalContent h3 {
+      margin-top: 0;
+      color: #1a1253;
+    }
+    input {
+      margin-top: 10px;
+      padding: 8px;
+      width: 80%;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 15px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      background: #1c0d66;
+      color: white;
+      font-weight: bold;
+    }
+    button:hover {
+      background: #261178;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
 </head>
 <body>
-  <!-- Barra de navegación -->
-  <div class="navbar">
-    <img src="logo (3).png" alt="Logo" class="logo" />
-    <div class="nav-buttons">
-      <button class="nav-btn">Mapa</button>
-      <button class="nav-btn">Niveles</button>
-      <button class="nav-btn">Perfil</button>
+  <h1>📚 DixiLand</h1>
+
+  <div class="stats">
+    <div class="stat">
+      <div>🔥 Nivel</div>
+      <strong id="nivel">1</strong>
+    </div>
+    <div class="stat">
+      <div>💎 Gems</div>
+      <strong id="gems">0</strong>
+    </div>
+    <div class="stat">
+      <div>📖 Progreso</div>
+      <strong><span id="completadas">0</span> / 6</strong>
     </div>
   </div>
 
+  <!-- Unidad Matemáticas -->
+  <div class="unit">
+    <h2>Unidad 1: Matemáticas</h2>
+    <div class="lesson" data-juego="sumaResta"><div class="icon">➕</div> Suma y Resta</div>
+    <div class="lesson locked" data-juego="multiplicacion"><div class="icon">✖️</div> Multiplicación</div>
+    <div class="lesson locked" data-juego="division"><div class="icon">➗</div> División</div>
+  </div>
+
+  <!-- Unidad Dislexia -->
+  <div class="unit">
+    <h2>Unidad 2: Dislexia</h2>
+    <div class="lesson locked" data-juego="completaPalabra"><div class="icon">🔤</div> Completa la palabra</div>
+    <div class="lesson locked" data-juego="ordenaSilabas"><div class="icon">✍️</div> Ordena las sílabas</div>
+    <div class="lesson locked" data-juego="fraseSentido"><div class="icon">👀</div> ¿La frase tiene sentido?</div>
+  </div>
+
+  <!-- Modal de juego -->
+  <div id="modal">
+    <div id="modalContent">
+      <h3 id="pregunta"></h3>
+      <input type="text" id="respuesta" placeholder="Tu respuesta">
+      <br>
+      <button id="btnResponder">Responder</button>
+    </div>
+  </div>
+
+ <script>
+let completadas = 0;
+let gems = 0;
+
+// Definición de unidades, lecciones y sub-niveles
+const unidades = {
+  matematica: {
+    lecciones: [
+      {
+        nombre: "sumaResta",
+        icon: "➕",
+        subNiveles: [
+          { pregunta: "7 - 2", respuesta: "5" },
+          { pregunta: "10 - 4", respuesta: "6" },
+          { pregunta: "15 - 9", respuesta: "6" }
+        ]
+      },
+      {
+        nombre: "multiplicacion",
+        icon: "✖️",
+        subNiveles: [
+          { pregunta: "3 × 4", respuesta: "12" },
+          { pregunta: "6 × 7", respuesta: "42" },
+          { pregunta: "8 × 9", respuesta: "72" }
+        ]
+      },
+      {
+        nombre: "division",
+        icon: "➗",
+        subNiveles: [
+          { pregunta: "10 ÷ 2", respuesta: "5" },
+          { pregunta: "42 ÷ 7", respuesta: "6" },
+          { pregunta: "81 ÷ 9", respuesta: "9" }
+        ]
+      }
+    ]
+  },
   
-<!-- Modal de imagen para el botón Mapa -->
-<div id="mapaModal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.5); z-index:1000; justify-content:center; align-items:center;">
-  <div class="modal-content" style="position:relative; width: 600px; height: 400px; background:white; border-radius:20px; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 4px 32px rgba(0,0,0,0.2);">
-   <button id="cerrarMapa" style="position:absolute; top:8px; right:8px; font-size:1.7rem; background:none; border:none; cursor:pointer; z-index:10;">✖</button>
-   <div style="flex:1; width:90%; display:flex; justify-content:center; align-items:center;">
-      <div style="overflow-y:auto; height:300px; width:100%; border-radius:12px; border:1px solid #ccc; box-shadow:0 2px 8px rgba(0,0,0,0.08); background:#f9f9f9;">
-        <img id="imagenMovible" src="back.png" alt="Mapa Movible" style="display:block; margin:auto; max-width:100%; height:800px; object-fit:cover;" />
-      </div>
-    </div>
-    <div style="margin-top:20px; color:#555; font-size:1rem;">Desplázate para ver el mapa completo</div>
-  </div>
-</div>
+  dislexia: {
+  lecciones: [
+    {
+      nombre: "completaPalabra",
+      icon: "✏️",
+      subNiveles: [
+        { pregunta: "El g__to está en la casa", respuesta: "gato" },
+        { pregunta: "La c___ra es blanca", respuesta: "cabra" },
+        { pregunta: "El so__ es amarillo", respuesta: "sol" }
+      ]
+    },
+    {
+      nombre: "ordenaSilabas",
+      icon: "🔤",
+      subNiveles: [
+        { pregunta: "Ordena: to-ga → ? ", respuesta: "gato" },
+        { pregunta: "Ordena: ra-cab → ? ", respuesta: "cabra" },
+        { pregunta: "Ordena: lo-s → ? ", respuesta: "sol" }
+      ]
+    },
+    {
+      nombre: "fraseSentido",
+      icon: "💬",
+      subNiveles: [
+        { pregunta: "La luna es de queso", respuesta: "no" },
+        { pregunta: "El perro ladra", respuesta: "si" },
+        { pregunta: "El cielo es verde", respuesta: "no" }
+      ]
+    }
+  ]
+}
+};
 
-<!-- ...existing code... -->
+// Progreso del jugador por unidad
+let progreso = {
+  matematica: { leccion: 0, subNivel: 0 },
+  dislexia: { leccion: 0, subNivel: 0 }
+};
 
-<div id="nivelesModal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.5); z-index:1000; justify-content:center; align-items:center;">
-  <div class="modal-content" style="position:relative; width: 600px; height: 400px; background:white; border-radius:20px; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 4px 32px rgba(0,0,0,0.2);">
-    <button id="cerrarNiveles" style="position:absolute; top:8px; right:8px; font-size:1.7rem; background:none; border:none; cursor:pointer; z-index:10;">✖</button>
-    <h2 style="margin-bottom:18px;">Niveles</h2>
-    <div style="overflow-y:auto; height:300px; width:90%; border-radius:12px; border:1px solid #ccc; box-shadow:0 2px 8px rgba(0,0,0,0.08); background:#f9f9f9; padding:12px 0;">
-      <table style="width:100%; border-collapse:separate; border-spacing:0 12px;">
-        <tbody>
-          <tr>
-            <td><img src="nivel1.png" style="width:40px; height:40px; border-radius:50%; object-fit:cover; border:2px solid #007bff;" /></td>
-            <td>Principiante</td>
-          </tr>
-          <tr>
-            <td><img src="nivel2.png" style="width:40px; height:40px; border-radius:50%; object-fit:cover; border:2px solid #28a745;" /></td>
-            <td>Intermedio</td>
-          </tr>
-          <tr>
-            <td><img src="nivel3.png" style="width:40px; height:40px; border-radius:50%; object-fit:cover; border:2px solid #ffc107;" /></td>
-            <td>Avanzado</td>
-          </tr>
-          <tr>
-            <td><img src="nivel4.png" style="width:40px; height:40px; border-radius:50%; object-fit:cover; border:2px solid #dc3545;" /></td>
-            <td>Experto</td>
-          </tr>
-          <tr>
-            <td><img src="nivel5.png" style="width:40px; height:40px; border-radius:50%; object-fit:cover; border:2px solid #6610f2;" /></td>
-            <td>Maestro</td>
-          </tr>
-          <tr>
-            <td><img src="nivel6.png" style="width:40px; height:40px; border-radius:50%; object-fit:cover; border:2px solid #fd7e14;" /></td>
-            <td>Élite</td>
-          </tr>
-          <tr>
-            <td><img src="nivel7.png" style="width:40px; height:40px; border-radius:50%; object-fit:cover; border:2px solid #20c997;" /></td>
-            <td>Legendario</td>
-          </tr>
-          <tr>
-            <td><img src="nivel8.png" style="width:40px; height:40px; border-radius:50%; object-fit:cover; border:2px solid #6f42c1;" /></td>
-            <td>Supremo</td>
-          </tr>
-          <tr>
-            <td><img src="nivel9.png" style="width:40px; height:40px; border-radius:50%; object-fit:cover; border:2px solid #e83e8c;" /></td>
-            <td>Genio</td>
-          </tr>
-          <tr>
-            <td><img src="nivel10.png" style="width:40px; height:40px; border-radius:50%; object-fit:cover; border:2px solid #343a40;" /></td>
-            <td>Divino</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div style="margin-top:20px; color:#555; font-size:1rem;">Desplázate para ver todos los niveles</div>
-  </div>
-</div>
+// Mensaje de feedback
+const feedback = document.createElement('div');
+feedback.id = 'feedback';
+feedback.style.marginTop = '10px';
+feedback.style.fontWeight = 'bold';
+document.getElementById('modalContent').appendChild(feedback);
 
-<!-- ...existing code... -->
+// Manejo de clicks en lecciones
+document.querySelectorAll('.lesson').forEach(lesson => {
+  lesson.addEventListener('click', () => {
+    if(lesson.classList.contains("locked")) return;
 
-<div id="perfilModal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.5); z-index:1000; justify-content:center; align-items:center;">
-  <div class="modal-content" style="position:relative; width: 500px; height: 350px; background:white; border-radius:20px; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 4px 32px rgba(0,0,0,0.2);">
-    <button id="cerrarPerfil" style="position:absolute; top:8px; right:8px; font-size:1.7rem; background:none; border:none; cursor:pointer; z-index:10;">✖</button>
-    <h2 style="margin-bottom:18px;">Perfil</h2>
-    <br>
-    <div style="display:flex; justify-content:center; gap:32px; width:100%; margin-bottom:18px;">
-      <div style="display:flex; flex-direction:column; align-items:center;">
-        <img src="princesa_icon (2).png" alt="Princesa Dixia" style="width:70px; height:70px; border-radius:50%; object-fit:cover; border:2px solid #ff69b4; margin-bottom:8px;" />
-        <span style="font-size:1rem; color:#333;">Princesa Dixia</span>
-      </div>
-      <div style="display:flex; flex-direction:column; align-items:center;">
-        <img src="jinete_icon.png" alt="Jinete de dragón Tal" style="width:70px; height:70px; border-radius:50%; object-fit:cover; border:2px solid #007bff; margin-bottom:8px;" />
-        <span style="font-size:1rem; color:#333;">Jinete de dragón </span>
-      </div>
-      <div style="display:flex; flex-direction:column; align-items:center;">
-        <img src="chica_icon.png" alt="Jinete de dragón Hansy" style="width:70px; height:70px; border-radius:50%; object-fit:cover; border:2px solid #28a745; margin-bottom:8px;" />
-        <span style="font-size:1rem; color:#333;">Jinete de dragón Hansy</span>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- ...existing code... -->
+    const juego = lesson.dataset.juego;
 
-  <!-- Imagen principal del mapa -->
-  <main class="main-container">
-    <img src="back.png" alt="Mapa" class="main-image" />
-  <a href="dixiapr-20250606T020533Z-1-001/dixiapr/j2/"> <button class="boton-circular"></button> <!-- Botón dentro del mapa -->
- </a> </main>
-  
+    // Determinar unidad
+    let unidad = null;
+    for(const key in unidades) {
+      if(unidades[key].lecciones.some(l => l.nombre === juego)) {
+        unidad = key;
+        break;
+      }
+    }
 
-  <!-- Modal de bienvenida -->
-  <div id="modal" class="modal">
-    <div class="modal-content">
-      <h2>¡Bienvenido a DixiLand!</h2>
-      <p>Eres un héroe en una misión para salvar el mundo. Usa las teclas de dirección para moverte y evita a los enemigos.</p>
-      <button id="cerrar">¡Jugar!</button>
-    </div>
-  </div>
+    if(unidad) abrirLeccion(unidad, lesson);
+  });
+});
 
-  <script src="play.js"></script>
+// Abrir lección: empieza desde el sub-nivel actual
+function abrirLeccion(unidad, lessonEl) {
+  const { leccion, subNivel } = progreso[unidad];
+  const nivelActual = unidades[unidad].lecciones[leccion].subNiveles[subNivel];
+  mostrarJuego(nivelActual.pregunta, nivelActual.respuesta, unidad, lessonEl);
+}
+
+// Avanzar sub-nivel o lección
+function avanzarSubNivel(unidad, lessonEl) {
+  let prog = progreso[unidad];
+  const leccionActual = unidades[unidad].lecciones[prog.leccion];
+
+  if(prog.subNivel + 1 < leccionActual.subNiveles.length) {
+    // Siguiente sub-nivel
+    prog.subNivel++;
+    abrirLeccion(unidad, lessonEl); // Mostrar siguiente automáticamente
+  } else {
+    // Lección completada -> desbloquear siguiente lección
+    prog.leccion++;
+    prog.subNivel = 0;
+
+    const siguienteLeccion = unidades[unidad].lecciones[prog.leccion];
+    if(siguienteLeccion) {
+      const el = document.querySelector(`[data-juego="${siguienteLeccion.nombre}"]`);
+      if(el) el.classList.remove("locked");
+    } else {
+      // Si no hay más lecciones en esta unidad -> pasar a la siguiente unidad
+      const unidadesKeys = Object.keys(unidades);
+      const indiceUnidadActual = unidadesKeys.indexOf(unidad);
+      const siguienteUnidad = unidadesKeys[indiceUnidadActual + 1];
+
+      if(siguienteUnidad) {
+        // Desbloquear la primera lección de la siguiente unidad
+        const primeraLeccion = unidades[siguienteUnidad].lecciones[0];
+        if(primeraLeccion) {
+          const el = document.querySelector(`[data-juego="${primeraLeccion.nombre}"]`);
+          if(el) el.classList.remove("locked");
+        }
+      }
+    }
+
+    // Cerrar modal al terminar la lección
+    cerrarModal();
+  }
+}
+
+
+// Mostrar modal con feedback
+function mostrarJuego(pregunta, respuestaCorrecta, unidad, lessonEl) {
+  document.getElementById('modal').style.display = 'flex';
+  document.getElementById('pregunta').innerText = pregunta;
+  document.getElementById('respuesta').value = '';
+  feedback.innerText = '';
+
+  const btn = document.getElementById('btnResponder');
+
+  // Limpiar listener anterior
+  const newBtn = btn.cloneNode(true);
+  btn.parentNode.replaceChild(newBtn, btn);
+
+  newBtn.onclick = function() {
+    let respuesta = document.getElementById('respuesta').value.trim();
+    if(respuesta.toLowerCase() === respuestaCorrecta.toLowerCase()) {
+      feedback.style.color = 'green';
+      feedback.innerText = '✅ ¡Correcto!';
+      marcarCompletada(lessonEl);
+      // Avanzar automáticamente al siguiente sub-nivel
+      setTimeout(() => avanzarSubNivel(unidad, lessonEl), 700); // pequeño delay para ver el feedback
+    } else {
+      feedback.style.color = 'red';
+      feedback.innerText = '❌ Intenta de nuevo';
+    }
+  };
+}
+
+// Marcar lección completada
+function marcarCompletada(lessonEl) {
+  if (!lessonEl.classList.contains("completed")) {
+    completadas++;
+    gems += 50;
+    lessonEl.classList.add("completed");
+    actualizarProgreso();
+  }
+}
+
+// Actualizar stats
+function actualizarProgreso() {
+  document.getElementById("completadas").textContent = completadas;
+  document.getElementById("gems").textContent = gems;
+}
+
+// Cerrar modal
+function cerrarModal() {
+  document.getElementById('respuesta').value = "";
+  feedback.innerText = '';
+  document.getElementById('modal').style.display = 'none';
+}
+
+// Cerrar modal al hacer click afuera
+document.getElementById('modal').addEventListener('click', (e) => {
+  if(e.target.id === 'modal') cerrarModal();
+});
+</script>
+
+
 </body>
 </html>
