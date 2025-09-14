@@ -1,132 +1,179 @@
-/* Reset de márgenes y paddings */
+/* Reset general */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+/* Fuente */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
-body{
-    margin: 0;
-    background-color: #0000007c;
-    color: #eee;
-    font-family: Poppins;
-    font-size: 12px;
-    
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f5f6fa;
+    color: #333;
+    line-height: 1.6;
 }
-a{
+
+/* ===== Header ===== */
+header {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    background: #17416d;
+    color: #fff;
+    border-radius: 0 0 15px 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    position: relative; /* Clave para el posicionamiento del menú */
+}
+
+header img {
+    height: 55px;
+}
+
+a {
     text-decoration: none;
 }
 
-header{
-    width: 1140px;
-    max-width: 80%;
-    margin: auto;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    position: relative;
-    z-index: 100;
-    color: #eee;
-    font-size: 150%;
+header nav a {
+    color: #fff;
+    margin-left: 15px;
+    padding: 8px 15px;
+    border-radius: 15px;
+    transition: background 0.3s;
+    font-weight: 500;
 }
 
-header a{
-    color: #ffffff;
-    margin-right: 5px;
-    padding: 5px 10px;
-    transition: 0.2s;
+header nav a:hover,
+header nav a.active {
+    background: #3498db;
 }
 
-a.active{
-    background:#17416d;
-    border-radius: 2px;
-    border-radius: 15px; /* Hacer el botón un poco redondeado */
-
+/* Oculta el botón por defecto en pantallas grandes */
+#menu-btn {
+    display: none;
+    font-size: 32px;
+    line-height: 1;
+    color: #fff;
+    background: none;
+    border: 0;
+    cursor: pointer;
 }
 
-header a:hover{
-    background: #17416d;
-    border-radius: 2px;
-    border-radius: 15px; /* Hacer el botón un poco redondeado */
-}
-
-/* Contenedor principal */
+/* ===== Contenedor principal ===== */
 .container {
     width: 100%;
     max-width: 1200px;
+    margin: 30px auto;
     padding: 20px;
-    margin-left: 5%;
 }
 
-/* Fila de Cards */
+/* ===== Cards ===== */
 .row {
     display: flex;
     flex-wrap: wrap;
+    gap: 20px;
     justify-content: space-between;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
-/* Card */
 .card {
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    padding: 15px;
     width: 48%;
     text-align: center;
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.15);
 }
 
-.card h3 {
-    font-size: 1.5rem;
+.card img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
     margin-bottom: 15px;
 }
 
-.card p {
-    font-size: 1rem;
-    margin-bottom: 20px;
-    color: #555;
-}
-
+/* ===== Botón ===== */
 .btn {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #3498db;
-    color: white;
+    background: #3498db;
+    color: #fff;
+    border-radius: 25px;
     text-decoration: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
+    font-weight: 500;
+    transition: background 0.3s;
 }
 
 .btn:hover {
-    background-color: #2980b9;
+    background: #2980b9;
 }
 
-/* Media Queries para Responsividad */
+/* ===== Responsividad ===== */
 
-/* Para pantallas más pequeñas */
+/* Estilos para pantallas medianas y grandes */
+@media (min-width: 769px) {
+    header nav {
+        display: flex;
+    }
+}
+
+/* Estilos para pantallas pequeñas (móviles) */
 @media (max-width: 768px) {
-    .row {
+    header {
+        height: auto;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    header img {
+        margin: 10px 0;
+    }
+
+    #menu-btn {
+        display: block; /* Muestra el botón en móviles */
+        margin-left: auto; /* Para alinear el botón a la derecha del logo */
+    }
+
+    header nav {
+        display: none; /* Oculta el menú por defecto en móviles */
+        position: absolute;
+        top: 70px;
+        right: 20px;
+        background: #17416d; /* Fondo del menú desplegable */
         flex-direction: column;
-        align-items: center;
+        width: 220px;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.25);
+        z-index: 1000;
+        text-align: center;
+    }
+
+    header nav a {
+        display: block; /* Cada enlace en una línea */
+        width: 100%;
+        margin: 5px 0;
+        text-align: center;
+    }
+    
+    /* Clase que se añade con JavaScript para mostrar el menú */
+    header nav.show {
+        display: flex;
     }
 
     .card {
-        width: 80%;
-        margin-bottom: 20px;
-    }
-}
-
-/* Para pantallas muy pequeñas (móviles) */
-@media (max-width: 480px) {
-    .card {
-        width: 90%;
+        width: 100%;
     }
 }
