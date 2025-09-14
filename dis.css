@@ -661,7 +661,7 @@ button:hover{
   flex-direction: column; /* SIEMPRE en columna */
   gap: 15px;
   width: 100%;
-  max-width: 600px; /* límite de ancho para que no se estiren mucho */
+  max-width: 400px; /* límite de ancho para que no se estiren mucho */
   margin: auto; /* centrado horizontal */
 }
 
