@@ -59,7 +59,7 @@
           <h2>${doc.titulo}</h2>
           <p>${doc.descripcion}</p>
         </div>
-        <span class="badge">${doc.badge}</span>
+       
         <button class="download-btn">⬇</button>
       `;
 
