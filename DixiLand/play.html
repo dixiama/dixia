@@ -4,113 +4,178 @@
   <meta charset="UTF-8">
   <title>DixiLand - Juegos</title>
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(180deg, #eafaf1, #ffffff);
-      margin: 0;
-      padding: 30px;
-      color: #0f172a;
-    }
-    h1 { text-align: center; color: #0a0e71; }
-    .stats { display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; }
-    .stat {
-      background: white;
-      border-radius: 14px;
-      padding: 15px 25px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      text-align: center;
-    }
-    .stat strong { font-size: 20px; display: block; margin-top: 5px; }
-    .unit {
-      max-width: 500px;
-      margin: 20px auto;
-      background: white;
-      border-radius: 16px;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
-      padding: 20px;
-    }
-    .unit h2 { margin-top: 0; color: #2a2258; }
-    .lesson {
-      cursor: pointer;
-      padding: 15px;
-      margin: 10px 0;
-      border-radius: 12px;
-      background: #f7fffb;
-      border: 1px solid #d7f2e5;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 500;
-      transition: 0.2s;
-    }
-    .lesson:hover { background: #e9fff3; }
-    .lesson.completed { background: linear-gradient(90deg, #1d3689, #0d0d58); color: white; border: none; }
-    .lesson.locked { opacity: 0.5; cursor: not-allowed; }
-    .lesson .icon { font-size: 22px; }
+  body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(180deg, #eafaf1, #ffffff);
+  margin: 0;
+  padding: 20px;
+  color: #0f172a;
+}
+h1 { 
+  text-align: center; 
+  color: #0a0e71; 
+}
 
-    /* Modal general */
-    #modal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.6);
-      justify-content: center; align-items: center;
-      z-index: 1000;
-    }
-    #modalContent {
-      background: #fff;
-      padding: 25px;
-      border-radius: 14px;
-      width: 360px;
-      text-align: center;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-      animation: fadeIn 0.3s ease;
-    }
-    #modalContent h3 { margin-top: 0; color: #1a1253; }
-    input {
-      margin-top: 10px;
-      padding: 8px;
-      width: 80%;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-    }
-    button {
-      margin-top: 15px;
-      padding: 10px 15px;
-      border-radius: 10px;
-      border: none;
-      cursor: pointer;
-      background: #1c0d66;
-      color: white;
-      font-weight: bold;
-    }
-    button:hover { background: #261178; }
-    .opciones {
-      display:flex;
-      justify-content:center;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top:10px;
-    }
-    .opciones img {
-      width: 80px;
-      height: 80px;
-      object-fit: cover;
-      margin: 6px;
-      cursor: pointer;
-      border-radius: 10px;
-      border: 2px solid transparent;
-      transition: 0.15s;
-    }
-    .opciones img:hover { border-color: #1c0d66; transform: translateY(-3px); }
-    #feedback { margin-top: 10px; font-weight: bold; }
+/* Estadísticas */
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.stat {
+  background: white;
+  border-radius: 14px;
+  padding: 15px 25px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  text-align: center;
+  flex: 1 1 120px;
+  min-width: 100px;
+}
+.stat strong { 
+  font-size: 20px; 
+  display: block; 
+  margin-top: 5px; 
+}
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.9); }
-      to { opacity: 1; transform: scale(1); }
-    }
-  </style>
+/* Unidades */
+.unit {
+  max-width: 600px;
+  margin: 20px auto;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  padding: 20px;
+}
+.unit h2 { 
+  margin-top: 0; 
+  color: #2a2258; 
+}
+
+/* Lecciones */
+.lesson {
+  cursor: pointer;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 12px;
+  background: #f7fffb;
+  border: 1px solid #d7f2e5;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+  transition: 0.2s;
+}
+.lesson:hover { background: #e9fff3; }
+.lesson.completed { 
+  background: linear-gradient(90deg, #1d3689, #0d0d58); 
+  color: white; 
+  border: none; 
+}
+.lesson.locked { 
+  opacity: 0.5; 
+  cursor: not-allowed; 
+}
+.lesson .icon { font-size: 22px; }
+
+/* Modal general */
+#modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  justify-content: center; 
+  align-items: center;
+  z-index: 1000;
+  padding: 10px;
+}
+#modalContent {
+  background: #fff;
+  padding: 20px;
+  border-radius: 14px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+  animation: fadeIn 0.3s ease;
+}
+#modalContent h3 { 
+  margin-top: 0; 
+  color: #1a1253; 
+}
+
+/* Inputs y botones */
+input {
+  margin-top: 10px;
+  padding: 10px;
+  width: 100%;
+  max-width: 280px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+button {
+  margin-top: 15px;
+  padding: 10px 15px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  background: #1c0d66;
+  color: white;
+  font-weight: bold;
+}
+button:hover { background: #261178; }
+
+/* Opciones */
+.opciones {
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:10px;
+}
+.opciones img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  cursor: pointer;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  transition: 0.15s;
+}
+.opciones img:hover { 
+  border-color: #1c0d66; 
+  transform: translateY(-3px); 
+}
+#feedback { 
+  margin-top: 10px; 
+  font-weight: bold; 
+}
+
+/* Animación */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@media (max-width: 600px) {
+  #modal {
+    padding: 15px;
+    background: rgba(0,0,0,0.6); /* recupera fondo oscuro */
+  }
+  #modalContent {
+    width: 100%;
+    max-width: none;
+    height: auto; /* solo ocupa lo necesario */
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    overflow-y: auto;
+  }
+}
+
+</style>
+
 </head>
 <body>
   <h1>📚 DixiLand</h1>
