@@ -343,6 +343,7 @@ function normalizar(texto) {
   return texto.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 }
 
+/* Marca una lección como completada */
 document.querySelectorAll('.lesson').forEach(lesson => {
   lesson.addEventListener('click', () => {
     if (lesson.classList.contains("locked")) return;
@@ -357,12 +358,14 @@ document.querySelectorAll('.lesson').forEach(lesson => {
   });
 });
 
+/* Abre la lección actual */
 function abrirLeccion(unidad, lessonEl) {
   const prog = progreso[unidad];
   const leccionActual = unidades[unidad].lecciones[prog.leccion];
   const nivelActual = leccionActual.subNiveles[prog.subNivel];
   mostrarJuegoPorTipo(leccionActual.tipo || 'texto', nivelActual, unidad, lessonEl);
 }
+
 
 function avanzarSubNivel(unidad, lessonEl) {
   let prog = progreso[unidad];
@@ -377,6 +380,7 @@ function avanzarSubNivel(unidad, lessonEl) {
     prog.leccion++;
     prog.subNivel = 0;
 
+    
     const siguienteLeccion = unidades[unidad].lecciones[prog.leccion];
     if (siguienteLeccion) {
       const el = document.querySelector(`[data-juego="${siguienteLeccion.nombre}"]`);
@@ -418,13 +422,15 @@ document.querySelectorAll('.lesson').forEach(lesson => {
   });
 });
 
+
+/* Muestra el juego según el tipo */
 function mostrarJuegoPorTipo(tipo, data, unidad, lessonEl) {
   const modal = document.getElementById('modal');
   const content = document.getElementById('modalContent');
   content.innerHTML = '';
   modal.style.display = 'flex';
 
-  if (tipo === 'texto') {
+  if (tipo === 'texto') /* Respuesta de texto */ {
     content.innerHTML = `<h3>${data.pregunta}</h3>
       <input type="text" id="respuesta" placeholder="Tu respuesta">
       <br>
@@ -440,7 +446,7 @@ function mostrarJuegoPorTipo(tipo, data, unidad, lessonEl) {
       } else { fb.style.color='red'; fb.innerText='❌ Intenta de nuevo'; }
     };
   }
-  else if (tipo === 'imagen') {
+  else if (tipo === 'imagen') /* Selección por imagen */ {
     let html = `<h3>${data.pregunta}</h3><div class="opciones">`;
     data.opciones.forEach((op, idx) => {
       html += `<img src="${op.img}" data-correcto="${op.correcto ? 'true':'false'}" alt="op${idx}">`;
@@ -456,7 +462,7 @@ function mostrarJuegoPorTipo(tipo, data, unidad, lessonEl) {
       });
     });
   } 
-  else if (tipo === 'opcion') {
+  else if (tipo === 'opcion') /* Selección por opción */ {
     let html = `<h3>${data.pregunta}</h3><div class="opciones">`;
     data.opciones.forEach(op => { html += `<button class="btnOpcion">${op}</button>`; });
     html += `</div><div id="feedback"></div>`;
@@ -470,7 +476,7 @@ function mostrarJuegoPorTipo(tipo, data, unidad, lessonEl) {
       });
     });
   }
-  else if (tipo === 'memoria') {
+  else if (tipo === 'memoria') /* Juego de memoria */ {
     let palabras = [...data.palabras, ...data.palabras];
     palabras.sort(() => Math.random() - 0.5);
     content.innerHTML = `<h3>Empareja las palabras iguales</h3><div class="opciones" id="cartas"></div><div id="feedback"></div>`;
@@ -550,7 +556,6 @@ function mostrarJuegoPorTipo(tipo, data, unidad, lessonEl) {
       }
     };
   }
-
   else if (tipo === 'opcionFrase') {
   content.innerHTML = `<h3>${data.frase}</h3><div class="opciones"></div><div id="feedback"></div>`;
   const contenedor = content.querySelector('.opciones');

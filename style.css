@@ -2,7 +2,7 @@
 
 body{
     margin: 0;
-    background-color: #0000007c;
+    background-color: #0000007c; 
     color: #eee;
     font-family: Poppins;
     font-size: 12px;
@@ -17,10 +17,10 @@ header{
     max-width: 80%;
     margin: auto;
     height: 50px;
-    display: flex;
+    display: flex; /* Usar flexbox para alinear elementos */
     align-items: center;
     position: relative;
-    z-index: 100;
+    z-index: 100; /* Asegura que el menú esté sobre otros elementos */
     color: #eee;
     font-size: 150%;
 }
@@ -49,9 +49,9 @@ header a:hover{
 
 /* Botón de 3 rayas: oculto en desktop, a la derecha en mobile */
 #menu-btn {
-  display: none;
+  display: none; /* oculto por defecto */
   font-size: 32px;
-  line-height: 1;
+  line-height: 1;   /* para que no haya espacio extra */
   color: #fff;
   background: none;
   border: 0;
@@ -99,8 +99,8 @@ header a:hover{
     height: 100vh;
     margin-top: -50px;
     width: 100vw;
-    overflow: hidden;
-    position: relative;
+    overflow: hidden; /* Oculta el desbordamiento */
+    position: relative; /* Para posicionar elementos hijos absolutamente */
 }
 .slider .list .item{
     width: 100%;
@@ -111,7 +111,7 @@ header a:hover{
 .slider .list .item img{
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover; /* Asegura que la imagen cubra todo el contenedor */
 }
 .slider .list .item .content{
     position: absolute;
@@ -121,7 +121,7 @@ header a:hover{
     left: 50%;
     transform: translateX(-50%);
     padding-right: 30%;
-    box-sizing: border-box;
+    box-sizing: border-box; /* Incluye el padding en el ancho total */
     color: #fff;
     text-shadow: 0 5px 10px #0004;
 }
@@ -183,7 +183,7 @@ header a:hover{
 .thumbnail .item{
     width: 140px;
     height: 200px;
-    flex-shrink: 0;
+    flex-shrink: 0; /* Evita que los elementos se reduzcan */
     position: relative;
 }
 
@@ -204,7 +204,7 @@ header a:hover{
     z-index: 100;
     width: 300px;
     max-width: 30%;
-    display: flex;
+    display: flex; /* use flexbox for alignment */
     gap: 10px;
     align-items: center;
 }
@@ -334,7 +334,7 @@ header a:hover{
         border-radius: 20px;
     }
 }
-
+/* Animation for prev thumbnail */
 .slider.prev .thumbnail .item:nth-child(1){
     overflow: hidden;
     opacity: 0;
@@ -346,6 +346,7 @@ header a:hover{
 }
 
 
+/* animation text out for prev button */
 .slider.prev .list .item:nth-child(2) .content .title,
 .slider.prev .list .item:nth-child(2) .content .type,
 .slider.prev .list .item:nth-child(2) .content .description,
@@ -370,10 +371,11 @@ header a:hover{
     }
 }
 
+
 .hola{
     padding: 10px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-evenly; /* Distribuye los elementos con espacio uniforme */
     background-color: gray;
     color: #fff;
 }
