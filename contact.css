@@ -120,10 +120,8 @@ body {
 
 .header nav a:hover,
 .header nav a.active {
-    background: #3498db; /* Color de hover/activo de biblioteca.css */
+    background: #3498db; 
 }
-
-/* --- SECCIONES DE CONTENIDO GENERALES (Mantengo tus estilos) --- */
 
 /* Definición del Proyecto */
 .project-definition {
