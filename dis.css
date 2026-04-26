@@ -163,8 +163,10 @@ button:hover {
 }
 
 .container {
-    max-width: 1400px;
+     width: 100%;
+    max-width: 1200px;
     margin: auto;
+
 }
 
 .color-acento {
@@ -199,7 +201,7 @@ button:hover {
 
 #somos-proya .container {
     text-align: center;
-    padding: 200px 12px;
+    padding: 15px auto;
 }
 
 #nuestros-programas {

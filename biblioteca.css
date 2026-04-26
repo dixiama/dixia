@@ -69,7 +69,7 @@ header nav a.active {
 .container {
     width: 100%;
     max-width: 1200px;
-    margin: 30px auto;
+    margin: auto;
     padding: 20px;
 }
 
@@ -118,6 +118,16 @@ header nav a.active {
 
 .btn:hover {
     background: #2980b9;
+}
+
+.footer {
+    background-color: #1f2965;
+    color: white;
+    text-align: center;
+}
+
+.footer p {
+    opacity: 0.9;
 }
 
 /* ===== Responsividad ===== */
