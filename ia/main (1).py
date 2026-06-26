@@ -3,179 +3,322 @@ from groq import Groq
 import time
 
 
-# ----------------------------
-# CONFIGURACIÓN INICIAL
-# ----------------------------
+# ---------------------------------------------------
+# CONFIGURACIÓN
+# ---------------------------------------------------
 
 st.set_page_config(
-    page_title="Asistente de Aprendizaje",
+    page_title="DIXIA",
     page_icon="🧠",
     layout="wide"
 )
 
 
-# ----------------------------
-# ESTILOS MODERNOS
-# ----------------------------
+# ---------------------------------------------------
+# ESTILOS
+# ---------------------------------------------------
 
 st.markdown("""
 <style>
 
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.cdnfonts.com/css/opendyslexic');
 
-html, body, [class*="css"]  {
-    font-family: 'Open Sans', sans-serif;
+html, body, [class*="css"]{
+    font-family:'Inter',sans-serif;
 }
 
-.main {
-    background-color: #0f172a;
-    color: white;
+.stApp{
+    background:
+    radial-gradient(circle at top left,#dbeafe 0%,#eff6ff 25%,#f8fafc 60%,#ffffff 100%);
 }
 
-.stChatMessage {
-    background-color: white;
-    border-radius: 15px;
-    padding: 15px;
-    margin-bottom: 10px;
-    border: 1px solid #334155;
+section[data-testid="stSidebar"]{
+    background:rgba(255,255,255,.75);
+    backdrop-filter:blur(25px);
+    border-right:1px solid rgba(0,0,0,.05);
 }
 
-[data-testid="stSidebar"] {
-    background-color: white;
+section[data-testid="stSidebar"] *{
+    color:#0f172a !important;
 }
 
-h1, h2, h3, h4, p, label {
-    color: black;
+.main .block-container{
+    padding-top:2rem;
+    max-width:1400px;
 }
 
-.stButton button {
-    border-radius: 10px;
-    width: 100%;
+h1{
+    font-size:4rem !important;
+    font-weight:800 !important;
+    letter-spacing:-2px;
+    color:#0f172a;
+}
+
+h2,h3{
+    color:#0f172a;
+    font-weight:700;
+}
+
+.stChatMessage{
+    border-radius:24px !important;
+    padding:20px !important;
+    margin-bottom:15px !important;
+    border:1px solid rgba(0,0,0,.05);
+    background:rgba(255,255,255,.8);
+    backdrop-filter:blur(20px);
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.05);
+}
+
+[data-testid="chatAvatarIcon-user"]{
+    background:#2563eb;
+}
+
+.stButton button{
+    width:100%;
+    border:none;
+    border-radius:16px;
+    height:50px;
+    font-weight:600;
+    background:linear-gradient(
+    135deg,
+    #2563eb,
+    #3b82f6
+    );
+    color:white;
+    transition:.3s;
+}
+
+.stButton button:hover{
+    transform:translateY(-2px);
+    box-shadow:
+    0 10px 25px rgba(37,99,235,.35);
+}
+
+.stTextInput input,
+.stTextArea textarea{
+    border-radius:16px !important;
+    border:1px solid #dbeafe !important;
+}
+
+.stSelectbox div[data-baseweb="select"]{
+    border-radius:14px;
+}
+
+.hero{
+    background:rgba(255,255,255,.75);
+    backdrop-filter:blur(20px);
+    padding:50px;
+    border-radius:30px;
+    margin-bottom:30px;
+    border:1px solid rgba(255,255,255,.5);
+    box-shadow:
+    0 20px 40px rgba(0,0,0,.05);
+}
+
+.metric-card{
+    background:white;
+    border-radius:24px;
+    padding:20px;
+    text-align:center;
+    box-shadow:
+    0 10px 25px rgba(0,0,0,.05);
+}
+
+.feature-card{
+    background:white;
+    padding:25px;
+    border-radius:24px;
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.05);
+    transition:.3s;
+}
+
+.feature-card:hover{
+    transform:translateY(-6px);
+}
+
+.dyslexia-font{
+    font-family:'OpenDyslexic',sans-serif;
+    font-size:20px;
+    line-height:2.1;
+    background:white;
+    border-radius:24px;
+    padding:25px;
+    box-shadow:
+    0 10px 25px rgba(0,0,0,.05);
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.hero,
+.feature-card,
+.metric-card,
+.stChatMessage{
+    animation:fadeUp .5s ease;
+}
+
+/* =========================
+   RESPONSIVE MOBILE
+========================= */
+
+@media (max-width: 768px){
+
+    h1{
+        font-size:2.4rem !important;
+        text-align:center;
+    }
+
+    h2{
+        font-size:1.6rem !important;
+    }
+
+    h3{
+        font-size:1.2rem !important;
+    }
+
+    .hero{
+        padding:25px;
+        border-radius:20px;
+    }
+
+    .hero p{
+        font-size:15px !important;
+    }
+
+    .stChatMessage{
+        padding:12px !important;
+        border-radius:18px !important;
+    }
+
+    .feature-card{
+        padding:18px;
+        margin-bottom:15px;
+    }
+
+    .metric-card{
+        padding:15px;
+    }
+
+    .stButton button{
+        height:55px;
+        font-size:15px;
+    }
+
+    .main .block-container{
+        padding-left:1rem;
+        padding-right:1rem;
+    }
+
+}
+
+/* =========================
+   CELULARES PEQUEÑOS
+========================= */
+
+@media (max-width: 480px){
+
+    h1{
+        font-size:2rem !important;
+    }
+
+    .hero{
+        padding:20px;
+    }
+
+    .hero p{
+        font-size:14px !important;
+    }
+
+    .stButton button{
+        height:50px;
+        font-size:14px;
+    }
+
 }
 
 </style>
 """, unsafe_allow_html=True)
 
 
-# ----------------------------
-# ESTADO DE SESIÓN
-# ----------------------------
+# ---------------------------------------------------
+# ESTADO
+# ---------------------------------------------------
 
-def inicializar_estado():
-
-    if "mensajes" not in st.session_state:
-        st.session_state.mensajes = []
-
-    if "contador_dislexia" not in st.session_state:
-        st.session_state.contador_dislexia = 0
-
-    if "contador_tdah" not in st.session_state:
-        st.session_state.contador_tdah = 0
-
-    if "contador_discalculia" not in st.session_state:
-        st.session_state.contador_discalculia = 0
-
-    if "contador_disgrafia" not in st.session_state:
-        st.session_state.contador_disgrafia = 0
+if "mensajes" not in st.session_state:
+    st.session_state.mensajes = []
 
 
-# ----------------------------
-# MOSTRAR HISTORIAL
-# ----------------------------
+# ---------------------------------------------------
+# API
+# ---------------------------------------------------
 
-def mostrar_historial():
+api_key = st.secrets.get("CLAVE_API")
 
-    for mensaje in st.session_state.mensajes:
+if not api_key:
+    st.error("❌ No se encontró la API KEY")
+    st.stop()
 
-        with st.chat_message(
-            mensaje["rol"],
-            avatar="🧑" if mensaje["rol"] == "user" else "🧠"
-        ):
-            st.write(mensaje["contenido"])
+cliente = Groq(api_key=api_key)
 
 
-# ----------------------------
-# APP PRINCIPAL
-# ----------------------------
+# ---------------------------------------------------
+# SIDEBAR
+# ---------------------------------------------------
 
-def main():
-
-    # ----------------------------
-    # SIDEBAR
-    # ----------------------------
-
-    st.sidebar.title("⚙️ Configuración")
-
-    MODELOS = [
-        "Llama 3.1 8B",
-        "Llama 3.1 70B",
-        "Mixtral 8x7B",
+seccion = st.sidebar.radio(
+    "📚 Secciones",
+    [
+        "Chatbot IA",
+        "Adaptador de Texto",
+        "Tests Orientativos"
     ]
+)
 
-    modelo_seleccionado = st.sidebar.selectbox(
-        "Selecciona un modelo de IA",
-        MODELOS
-    )
+modo_usuario = st.sidebar.selectbox(
+    "👤 Usuario",
+    [
+        "Estudiante",
+        "Docente",
+        "Familia"
+    ]
+)
 
-    modelos_groq = {
-        "Llama 3.1 8B": "llama-3.1-8b-instant",
-        "Llama 3.1 70B": "llama-3.3-70b-versatile",
-        "Mixtral 8x7B": "mixtral-8x7b-32768",
-    }
+modo_infantil = st.sidebar.checkbox(
+    "👶 Explicar para niños"
+)
 
-    modelo_real = modelos_groq[modelo_seleccionado]
 
-    # ----------------------------
-    # MODO DE USUARIO
-    # ----------------------------
+# ---------------------------------------------------
+# CHATBOT IA
+# ---------------------------------------------------
 
-    modo_usuario = st.sidebar.selectbox(
-        "👤 ¿Quién sos?",
-        ["Estudiante", "Docente", "Familia"]
-    )
+if seccion == "Chatbot IA":
 
-    # ----------------------------
-    # MODO INFANTIL
-    # ----------------------------
-
-    modo_infantil = st.sidebar.checkbox(
-        "👶 Explicar para niños"
-    )
-
-    # ----------------------------
-    # TÍTULO
-    # ----------------------------
-
-    st.title("🧠 Asistente sobre Dificultades del Aprendizaje")
-
-    st.write(
-        "Preguntá sobre dislexia, disgrafía, discalculia, TDAH y estrategias de estudio."
-    )
+    st.title("🧠 DIXIA")
+    st.subheader("Asistente Educativo Inclusivo")
 
     st.warning(
-        "Esta IA brinda orientación educativa y no reemplaza una evaluación profesional."
+        """
+        Esta IA brinda orientación educativa y NO realiza diagnósticos.
+        """
     )
 
-    st.write(f"### Modelo seleccionado: {modelo_seleccionado}")
+    # ---------------------------------------------------
+    # PREGUNTAS RÁPIDAS
+    # ---------------------------------------------------
 
-    # ----------------------------
-    # API KEY
-    # ----------------------------
-
-    api_key = st.secrets.get("CLAVE_API")
-
-    if api_key:
-        st.success("✅ Conectado a Groq")
-        cliente = Groq(api_key=api_key)
-    else:
-        st.error("❌ No se encontró la API key")
-        st.stop()
-
-    # ----------------------------
-    # BOTONES RÁPIDOS
-    # ----------------------------
-
-    st.subheader("💡 Preguntas rápidas")
+    st.subheader("💡 Preguntas frecuentes")
 
     col1, col2, col3 = st.columns(3)
 
@@ -186,118 +329,99 @@ def main():
             pregunta_rapida = "¿Qué es la dislexia?"
 
     with col2:
-        if st.button("¿Cómo ayudar con la discalculia?"):
-            pregunta_rapida = "¿Cómo ayudar con la discalculia?"
+        if st.button("¿Cómo ayudar con discalculia?"):
+            pregunta_rapida = "¿Cómo ayudar con discalculia?"
 
     with col3:
-        if st.button("Consejos para estudiar con TDAH"):
-            pregunta_rapida = "Dame consejos para estudiar con TDAH"
+        if st.button("Consejos de estudio"):
+            pregunta_rapida = "Dame consejos de estudio"
 
-    # ----------------------------
-    # MOSTRAR HISTORIAL
-    # ----------------------------
+    # ---------------------------------------------------
+    # HISTORIAL
+    # ---------------------------------------------------
 
-    mostrar_historial()
+    for mensaje in st.session_state.mensajes:
 
-    # ----------------------------
-    # INPUT USUARIO
-    # ----------------------------
+        with st.chat_message(
+            mensaje["role"],
+            avatar="🧑" if mensaje["role"] == "user" else "🧠"
+        ):
+            st.write(mensaje["content"])
 
-    mensaje_usuario = st.chat_input("Escribí tu pregunta...")
+    # ---------------------------------------------------
+    # INPUT
+    # ---------------------------------------------------
+
+    mensaje_usuario = st.chat_input(
+        "Escribí tu pregunta..."
+    )
 
     if pregunta_rapida:
         mensaje_usuario = pregunta_rapida
 
-    # ----------------------------
-    # PROCESAR MENSAJE
-    # ----------------------------
+    # ---------------------------------------------------
+    # RESPUESTA IA
+    # ---------------------------------------------------
 
-    if mensaje_usuario and mensaje_usuario.strip():
-
-        mensaje_lower = mensaje_usuario.lower()
-
-        # ----------------------------
-        # CONTADORES
-        # ----------------------------
-
-        if "dislexia" in mensaje_lower:
-            st.session_state.contador_dislexia += 1
-
-        if "tdah" in mensaje_lower:
-            st.session_state.contador_tdah += 1
-
-        if "discalculia" in mensaje_lower:
-            st.session_state.contador_discalculia += 1
-
-        if "disgrafia" in mensaje_lower or "disgrafía" in mensaje_lower:
-            st.session_state.contador_disgrafia += 1
-
-        # ----------------------------
-        # GUARDAR MENSAJE
-        # ----------------------------
+    if mensaje_usuario:
 
         st.session_state.mensajes.append({
-            "rol": "user",
-            "contenido": mensaje_usuario
+            "role": "user",
+            "content": mensaje_usuario
         })
-
-        # ----------------------------
-        # MOSTRAR MENSAJE
-        # ----------------------------
 
         with st.chat_message("user", avatar="🧑"):
             st.write(mensaje_usuario)
 
-        # ----------------------------
-        # MODO INFANTIL
-        # ----------------------------
-
         if modo_infantil:
             prompt_extra = """
-            Explicá de forma muy simple,
+            Explicá de forma simple y amigable,
             como para un niño pequeño.
             """
         else:
             prompt_extra = ""
 
-        # ----------------------------
-        # PROMPT DEL SISTEMA
-        # ----------------------------
-
         prompt_sistema = f"""
-        Sos un asistente educativo especializado en:
+        Sos DIXIA, un asistente educativo especializado en:
 
         - dislexia
         - disgrafía
         - discalculia
-        - TDAH
+        - inclusión educativa
         - dificultades del aprendizaje
 
-        El usuario es: {modo_usuario}
+        Tus respuestas deben basarse principalmente en información educativa proveniente de:
 
-        Adaptá tus respuestas según el perfil:
+        - International Dyslexia Association
+        - Learning Disabilities Association of America
+        - Disfam
+        - Dislexia y Dispraxia Argentina
+        - Orientación Andújar
+        - OIDEA
+        - ASDICAN
+        - Discalculia Madrid
 
-        - Si es estudiante: explicá simple y motivá.
-        - Si es docente: sugerí adaptaciones escolares.
-        - Si es familia: explicá cómo acompañar desde casa.
+        Tu función es:
+        - responder dudas
+        - explicar conceptos
+        - recomendar estrategias
+        - sugerir actividades
+        - recomendar contenidos educativos
+        - orientar a familias y docentes
+
+        Usuario actual: {modo_usuario}
 
         {prompt_extra}
 
-        Reglas importantes:
-        - Explicá de forma clara y sencilla
-        - Usá lenguaje amigable
-        - Nunca des diagnósticos médicos
+        Reglas:
+        - Nunca diagnostiques
         - Nunca afirmes que alguien tiene una condición
         - Recomendá consultar profesionales
-        - Da estrategias educativas y consejos útiles
-        - Sé empático y positivo
+        - Sé empático
+        - Respondé de forma clara
         """
 
-        # ----------------------------
-        # CONTEXTO IA
-        # ----------------------------
-
-        mensajes_para_ia = [
+        mensajes_ia = [
             {
                 "role": "system",
                 "content": prompt_sistema
@@ -305,88 +429,513 @@ def main():
         ]
 
         for mensaje in st.session_state.mensajes:
-            mensajes_para_ia.append({
-                "role": mensaje["rol"],
-                "content": mensaje["contenido"]
-            })
-
-        # ----------------------------
-        # RESPUESTA IA
-        # ----------------------------
+            mensajes_ia.append(mensaje)
 
         with st.chat_message("assistant", avatar="🧠"):
 
             with st.spinner("Pensando..."):
 
                 respuesta = cliente.chat.completions.create(
-                    model=modelo_real,
-                    messages=mensajes_para_ia,
+                    model="llama-3.3-70b-versatile",
+                    messages=mensajes_ia,
                     temperature=0.7,
-                    max_tokens=1024
+                    max_tokens=1200
                 )
 
-                texto_respuesta = respuesta.choices[0].message.content
+                texto = respuesta.choices[0].message.content
 
-                # ----------------------------
-                # EFECTO ESCRITURA
-                # ----------------------------
+                placeholder = st.empty()
 
-                respuesta_placeholder = st.empty()
+                parcial = ""
 
-                texto_parcial = ""
+                for palabra in texto.split():
 
-                for palabra in texto_respuesta.split():
+                    parcial += palabra + " "
 
-                    texto_parcial += palabra + " "
-
-                    respuesta_placeholder.markdown(
-                        texto_parcial
-                    )
+                    placeholder.markdown(parcial)
 
                     time.sleep(0.02)
 
-        # ----------------------------
-        # GUARDAR RESPUESTA
-        # ----------------------------
-
         st.session_state.mensajes.append({
-            "rol": "assistant",
-            "contenido": texto_respuesta
+            "role": "assistant",
+            "content": texto
         })
 
-        # ----------------------------
-        # RECURSOS AUTOMÁTICOS
-        # ----------------------------
+        # ---------------------------------------------------
+        # RECURSOS
+        # ---------------------------------------------------
+
+        st.divider()
 
         st.subheader("📚 Recursos recomendados")
 
-        if "dislexia" in mensaje_lower:
+        if "dislexia" in mensaje_usuario.lower():
 
             st.info(
-                "📄 Te recomendamos descargar la guía de lectura para dislexia."
+                "📄 Guía de lectura accesible para dislexia."
             )
-
-        if "tdah" in mensaje_lower:
 
             st.info(
-                "📄 Probá nuestra técnica Pomodoro para concentración."
+                "🎮 Juegos de reconocimiento de letras."
             )
 
-        if "discalculia" in mensaje_lower:
+        if "discalculia" in mensaje_usuario.lower():
 
             st.info(
-                "📄 Mirá los ejercicios visuales de matemática."
+                "🔢 Actividades visuales de matemática."
             )
 
-        if "disgrafia" in mensaje_lower or "disgrafía" in mensaje_lower:
+        if "disgrafia" in mensaje_usuario.lower() or "disgrafía" in mensaje_usuario.lower():
 
             st.info(
-                "📄 Te recomendamos las actividades de motricidad fina."
+                "✍️ Ejercicios de motricidad fina."
             )
 
-# ----------------------------
-# EJECUCIÓN
-# ----------------------------
 
-inicializar_estado()
-main()
+# ---------------------------------------------------
+# ADAPTADOR DE TEXTO
+# ---------------------------------------------------
+
+elif seccion == "Adaptador de Texto":
+
+    st.title("✨ Adaptador de Texto")
+
+    st.write(
+        """
+        Transformá contenidos escolares
+        en formatos más accesibles.
+        """
+    )
+
+    tipo_adaptacion = st.selectbox(
+        "Seleccioná adaptación",
+        [
+            "Dislexia",
+            "Discalculia",
+            "Disgrafía"
+        ]
+    )
+
+    texto_original = st.text_area(
+        "📄 Pegá el texto o actividad",
+        height=300
+    )
+
+    adaptar = st.button("✨ Adaptar contenido")
+
+    if adaptar and texto_original.strip():
+
+        with st.spinner("Adaptando contenido..."):
+
+            if tipo_adaptacion == "Dislexia":
+
+                prompt = f"""
+                Adaptá este texto para personas con dislexia.
+
+                Objetivos:
+                - simplificar lectura
+                - dividir ideas
+                - usar frases cortas
+                - destacar conceptos importantes
+                - usar listas
+                - mejorar comprensión
+
+                Texto:
+                {texto_original}
+                """
+
+            elif tipo_adaptacion == "Discalculia":
+
+                prompt = f"""
+                Adaptá este contenido para estudiantes con discalculia.
+
+                Objetivos:
+                - explicar paso a paso
+                - simplificar operaciones
+                - usar ejemplos sencillos
+                - facilitar comprensión matemática
+
+                Texto:
+                {texto_original}
+                """
+
+            else:
+
+                prompt = f"""
+                Adaptá este contenido para estudiantes con disgrafía.
+
+                Objetivos:
+                - reducir escritura
+                - organizar ideas
+                - usar listas
+                - facilitar expresión
+
+                Texto:
+                {texto_original}
+                """
+
+            respuesta = cliente.chat.completions.create(
+                model="llama-3.3-70b-versatile",
+                messages=[
+                    {
+                        "role": "system",
+                        "content": """
+                        Sos especialista en adaptación pedagógica.
+                        """
+                    },
+                    {
+                        "role": "user",
+                        "content": prompt
+                    }
+                ],
+                temperature=0.5,
+                max_tokens=1500
+            )
+
+            texto_adaptado = respuesta.choices[0].message.content
+
+            col1, col2 = st.columns(2)
+
+            with col1:
+
+                st.subheader("📄 Original")
+
+                st.text_area(
+                    "",
+                    value=texto_original,
+                    height=400,
+                    disabled=True
+                )
+
+            with col2:
+
+                st.subheader("✨ Adaptado")
+
+                if tipo_adaptacion == "Dislexia":
+
+                    st.markdown(
+                        f"""
+                        <div class="dyslexia-font">
+                        {texto_adaptado}
+                        </div>
+                        """,
+                        unsafe_allow_html=True
+                    )
+
+            st.success(
+                "✅ Contenido adaptado correctamente."
+            )
+
+
+# ---------------------------------------------------
+# TESTS
+# ---------------------------------------------------
+
+# ---------------------------------------------------
+# TESTS ORIENTATIVOS
+# ---------------------------------------------------
+
+elif seccion == "Tests Orientativos":
+
+    st.title("🧪 Tests Orientativos")
+
+    st.warning(
+        """
+        ⚠️ IMPORTANTE:
+
+        Estos tests NO realizan diagnósticos médicos.
+
+        Solo identifican posibles señales asociadas
+        a dificultades de aprendizaje.
+
+        Ante cualquier duda, recomendamos consultar
+        profesionales especializados.
+        """
+    )
+
+    tipo_test = st.selectbox(
+        "Seleccioná un test",
+        [
+            "Dislexia",
+            "Discalculia",
+            "Disgrafía"
+        ]
+    )
+
+    puntaje = 0
+
+    # ---------------------------------------------------
+    # DISLEXIA
+    # ---------------------------------------------------
+
+    if tipo_test == "Dislexia":
+
+        st.subheader("📖 Test orientativo de Dislexia")
+
+        preguntas = [
+            "¿Leés lentamente?",
+            "¿Tuviste dificultades para aprender a leer en la escuela?",
+            "¿Necesitás leer algo varias veces para comprenderlo?",
+            "¿Te incomoda leer en voz alta?",
+            "¿Omitís, cambiás o agregás letras al leer o escribir?",
+            "¿Seguís teniendo errores ortográficos incluso usando corrector?",
+            "¿Te cuesta pronunciar palabras largas o poco comunes?",
+            "¿Preferís artículos cortos antes que libros largos?",
+            "¿Te resultó muy difícil aprender otro idioma?",
+            "¿Evitás actividades que requieren mucha lectura?"
+        ]
+
+        for i, pregunta in enumerate(preguntas):
+
+            respuesta = st.radio(
+                pregunta,
+                ["Nunca", "A veces", "Frecuentemente"],
+                key=f"dislexia_{i}"
+            )
+
+            if respuesta == "A veces":
+                puntaje += 1
+
+            elif respuesta == "Frecuentemente":
+                puntaje += 2
+
+        if st.button("📊 Ver resultado Dislexia"):
+
+            st.subheader("Resultado")
+
+            if puntaje >= 14:
+
+                st.error(
+                    """
+                    Existen varias señales asociadas
+                    a dificultades de lectura compatibles
+                    con dislexia.
+                    """
+                )
+
+            elif puntaje >= 8:
+
+                st.warning(
+                    """
+                    Existen algunas señales asociadas
+                    a dificultades de lectura.
+                    """
+                )
+
+            else:
+
+                st.success(
+                    """
+                    No aparecen muchas señales asociadas.
+                    """
+                )
+
+            st.info(
+                """
+                ⚠️ Este resultado NO constituye un diagnóstico.
+
+                Recomendamos consultar profesionales
+                especializados para una evaluación adecuada.
+                """
+            )
+
+    # ---------------------------------------------------
+    # DISCALCULIA
+    # ---------------------------------------------------
+
+    elif tipo_test == "Discalculia":
+
+        st.subheader("🔢 Test orientativo de Discalculia")
+
+        preguntas = [
+            "¿Confundís símbolos matemáticos como +, -, ÷ o x?",
+            "¿Te cuesta seguir procedimientos matemáticos paso a paso?",
+            "¿Tenés dificultad para comprender sumas, restas o multiplicaciones?",
+            "¿Te cuesta memorizar las tablas?",
+            "¿Te resulta difícil hacer cálculos mentales?",
+            "¿Tenés dificultades usando calculadora?",
+            "¿Confundís o invertís números?",
+            "¿Te cuesta comprender el paso del tiempo?",
+            "¿Tenés dificultades con dinero o cuentas simples?",
+            "¿Te cuesta llevar puntajes en juegos?",
+            "¿Tenés dificultades con presupuestos o planificación financiera?",
+            "¿Te cuesta recordar fórmulas matemáticas?",
+            "¿Tenés mala orientación espacial o direccional?",
+            "¿Te cuesta calcular distancias o medidas?",
+            "¿Sentís ansiedad al hacer matemáticas?",
+            "¿Te cuesta imaginar números en orden?",
+            "¿Tenés dificultades contando con los dedos?",
+            "¿Te cuesta comprender relaciones numéricas simples?"
+        ]
+
+        opciones = [
+            "Nunca",
+            "Rara vez",
+            "A veces",
+            "Siempre"
+        ]
+
+        for i, pregunta in enumerate(preguntas):
+
+            respuesta = st.radio(
+                pregunta,
+                opciones,
+                key=f"discalculia_{i}"
+            )
+
+            if respuesta == "Rara vez":
+                puntaje += 1
+
+            elif respuesta == "A veces":
+                puntaje += 2
+
+            elif respuesta == "Siempre":
+                puntaje += 3
+
+        if st.button("📊 Ver resultado Discalculia"):
+
+            st.subheader("Resultado")
+
+            if puntaje >= 35:
+
+                st.error(
+                    """
+                    Existen múltiples señales asociadas
+                    a dificultades matemáticas compatibles
+                    con discalculia.
+                    """
+                )
+
+            elif puntaje >= 20:
+
+                st.warning(
+                    """
+                    Existen algunas señales asociadas
+                    a dificultades en el procesamiento numérico.
+                    """
+                )
+
+            else:
+
+                st.success(
+                    """
+                    No aparecen muchas señales asociadas.
+                    """
+                )
+
+            st.info(
+                """
+                ⚠️ Este test NO realiza diagnósticos.
+
+                Ante dudas, recomendamos consultar
+                profesionales especializados.
+                """
+            )
+
+        st.caption(
+            "Fuente de referencia: DyscalculiaTest.com"
+        )
+
+    # ---------------------------------------------------
+    # DISGRAFÍA
+    # ---------------------------------------------------
+
+    elif tipo_test == "Disgrafía":
+
+        st.subheader("✍️ Test orientativo de Disgrafía")
+
+        st.write(
+            """
+            La disgrafía es una dificultad relacionada
+            con la escritura y la organización escrita.
+            """
+        )
+
+        preguntas = [
+            "¿Tenés dificultad para escribir de forma clara?",
+            "¿Tu letra suele ser difícil de entender?",
+            "¿Evitás escribir textos largos?",
+            "¿Te cansás rápidamente al escribir?",
+            "¿Te cuesta organizar ideas por escrito?",
+            "¿Tenés problemas respetando espacios entre palabras?",
+            "¿Te cuesta sostener correctamente el lápiz?",
+            "¿Cometés errores frecuentes de puntuación o gramática?",
+            "¿Escribís muy lentamente?",
+            "¿Preferís responder oralmente antes que escribir?"
+        ]
+
+        for i, pregunta in enumerate(preguntas):
+
+            respuesta = st.radio(
+                pregunta,
+                [
+                    "Nunca",
+                    "A veces",
+                    "Frecuentemente"
+                ],
+                key=f"disgrafia_{i}"
+            )
+
+            if respuesta == "A veces":
+                puntaje += 1
+
+            elif respuesta == "Frecuentemente":
+                puntaje += 2
+
+        if st.button("📊 Ver resultado Disgrafía"):
+
+            st.subheader("Resultado")
+
+            if puntaje >= 14:
+
+                st.error(
+                    """
+                    Existen varias señales asociadas
+                    a dificultades de escritura compatibles
+                    con disgrafía.
+                    """
+                )
+
+            elif puntaje >= 8:
+
+                st.warning(
+                    """
+                    Existen algunas señales asociadas
+                    a dificultades de escritura.
+                    """
+                )
+
+            else:
+
+                st.success(
+                    """
+                    No aparecen muchas señales asociadas.
+                    """
+                )
+
+            st.info(
+                """
+                ⚠️ Este resultado NO constituye un diagnóstico.
+
+                Recomendamos consultar profesionales
+                especializados para una evaluación completa.
+                """
+            )
+
+        with st.expander("📚 Más información sobre Disgrafía"):
+
+            st.write(
+                """
+                La disgrafía puede afectar:
+
+                - escritura
+                - ortografía
+                - motricidad fina
+                - organización de ideas
+                - velocidad de escritura
+
+                Muchas personas con disgrafía
+                tienen más facilidad para expresarse
+                oralmente que por escrito.
+                """
+            )
